@@ -40,6 +40,7 @@ class ShellWindow(QMainWindow):
         self.tabs.setDocumentMode(True)
         self.tabs.setTabsClosable(True)
         self.tabs.setMovable(False)
+        self.tabs.tabBar().setDrawBase(False)       # без светлой линии базы Fusion под вкладками
         self.setCentralWidget(self.tabs)
         self.home = HomePage(self)
         self.tabs.addTab(self.home, "")
