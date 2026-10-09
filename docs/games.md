@@ -72,5 +72,5 @@ python tools/contract_check.py --games --run           # все копии
 
 | id | Источник | Раскладка | Заметки |
 |---|---|---|---|
-| durak | DurakAiGame 0.9.0 | contract | проходит проверку без замечаний |
+| durak | DurakAiGame 0.9.0 | contract | проходит проверку без замечаний; заменить копией 1.0.0 (свои pause/resume, без gc.freeze), когда 1.0.0 появится в Gitea |
 | tictactoe | TicTacToeAi 1.0.1 | legacy + переходник | только по-русски; перевод на контракт - волна 7 |
