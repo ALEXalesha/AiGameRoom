@@ -1,0 +1,13 @@
+{
+ "durak": {
+  "source": "DurakAiGame",
+  "layout": "contract"
+ },
+ "tictactoe": {
+  "source": "TicTacToeAi",
+  "layout": "legacy",
+  "map": {"game": "app", "core": "core", "nn": "nn", "paths": "paths"},
+  "copy": ["models", "docs/preview_menu.png"],
+  "keep": ["__init__.py", "_adapter.py"]
+ }
+}

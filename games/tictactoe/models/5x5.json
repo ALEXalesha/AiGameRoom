@@ -1,0 +1,242 @@
+{
+ "field": "5x5",
+ "size": 5,
+ "win_length": 4,
+ "network": {
+  "n": 5,
+  "kind": "conv",
+  "hidden": 64,
+  "channels": 32,
+  "conv_layers": 3,
+  "head": 64,
+  "parameters": 70433
+ },
+ "method": {
+  "targets": "λ-возврат по цепочке лучших ответов, дисконт, обрыв на случайном ответе",
+  "lambda": 0.7,
+  "gamma": 0.97,
+  "soft": 0.1,
+  "eps_start": 0.3,
+  "eps_end": 0.05,
+  "lr": 0.0005,
+  "batch_games": 64,
+  "updates": 8,
+  "batch": 256,
+  "buffer": 100000,
+  "symmetries": 8,
+  "seed": 0
+ },
+ "games": 40000,
+ "train_seconds": 707.5,
+ "levels": [
+  {
+   "key": "novice",
+   "name": "новичок",
+   "games": 1000,
+   "file": "5x5-novice.npz",
+   "checks": {
+    "vs_random": {
+     "games": 200,
+     "wins": 174,
+     "losses": 25,
+     "draws": 1,
+     "win_rate": 0.87
+    },
+    "vs_bot": {
+     "games": 200,
+     "wins": 41,
+     "losses": 149,
+     "draws": 10,
+     "win_rate": 0.205
+    },
+    "vs_random_first": {
+     "games": 200,
+     "wins": 181,
+     "losses": 19,
+     "draws": 0,
+     "win_rate": 0.905
+    }
+   }
+  },
+  {
+   "key": "medium",
+   "name": "средний",
+   "games": 6000,
+   "file": "5x5-medium.npz",
+   "checks": {
+    "vs_random": {
+     "games": 200,
+     "wins": 200,
+     "losses": 0,
+     "draws": 0,
+     "win_rate": 1.0
+    },
+    "vs_bot": {
+     "games": 200,
+     "wins": 146,
+     "losses": 42,
+     "draws": 12,
+     "win_rate": 0.73
+    },
+    "vs_random_first": {
+     "games": 200,
+     "wins": 198,
+     "losses": 2,
+     "draws": 0,
+     "win_rate": 0.99
+    }
+   }
+  },
+  {
+   "key": "strong",
+   "name": "сильный",
+   "games": 40000,
+   "file": "5x5-strong.npz",
+   "checks": {
+    "vs_random": {
+     "games": 200,
+     "wins": 200,
+     "losses": 0,
+     "draws": 0,
+     "win_rate": 1.0
+    },
+    "vs_bot": {
+     "games": 200,
+     "wins": 183,
+     "losses": 11,
+     "draws": 6,
+     "win_rate": 0.915
+    },
+    "vs_random_first": {
+     "games": 200,
+     "wins": 200,
+     "losses": 0,
+     "draws": 0,
+     "win_rate": 1.0
+    }
+   }
+  }
+ ],
+ "curve": [
+  {
+   "games": 2000,
+   "vs_random": 0.94,
+   "vs_bot": 0.53,
+   "vs_bot_losses": 0.44
+  },
+  {
+   "games": 4000,
+   "vs_random": 0.98,
+   "vs_bot": 0.93,
+   "vs_bot_losses": 0.06
+  },
+  {
+   "games": 6000,
+   "vs_random": 0.99,
+   "vs_bot": 0.75,
+   "vs_bot_losses": 0.11
+  },
+  {
+   "games": 8000,
+   "vs_random": 1.0,
+   "vs_bot": 0.82,
+   "vs_bot_losses": 0.15
+  },
+  {
+   "games": 10000,
+   "vs_random": 0.99,
+   "vs_bot": 0.86,
+   "vs_bot_losses": 0.11
+  },
+  {
+   "games": 12000,
+   "vs_random": 1.0,
+   "vs_bot": 0.93,
+   "vs_bot_losses": 0.05
+  },
+  {
+   "games": 14000,
+   "vs_random": 1.0,
+   "vs_bot": 0.88,
+   "vs_bot_losses": 0.09
+  },
+  {
+   "games": 16000,
+   "vs_random": 1.0,
+   "vs_bot": 0.8,
+   "vs_bot_losses": 0.17
+  },
+  {
+   "games": 18000,
+   "vs_random": 1.0,
+   "vs_bot": 0.92,
+   "vs_bot_losses": 0.03
+  },
+  {
+   "games": 20000,
+   "vs_random": 1.0,
+   "vs_bot": 0.91,
+   "vs_bot_losses": 0.07
+  },
+  {
+   "games": 22000,
+   "vs_random": 1.0,
+   "vs_bot": 0.97,
+   "vs_bot_losses": 0.02
+  },
+  {
+   "games": 24000,
+   "vs_random": 1.0,
+   "vs_bot": 0.89,
+   "vs_bot_losses": 0.05
+  },
+  {
+   "games": 26000,
+   "vs_random": 1.0,
+   "vs_bot": 0.92,
+   "vs_bot_losses": 0.06
+  },
+  {
+   "games": 28000,
+   "vs_random": 1.0,
+   "vs_bot": 0.91,
+   "vs_bot_losses": 0.03
+  },
+  {
+   "games": 30000,
+   "vs_random": 1.0,
+   "vs_bot": 0.92,
+   "vs_bot_losses": 0.03
+  },
+  {
+   "games": 32000,
+   "vs_random": 1.0,
+   "vs_bot": 0.95,
+   "vs_bot_losses": 0.04
+  },
+  {
+   "games": 34000,
+   "vs_random": 1.0,
+   "vs_bot": 0.96,
+   "vs_bot_losses": 0.02
+  },
+  {
+   "games": 36000,
+   "vs_random": 1.0,
+   "vs_bot": 0.91,
+   "vs_bot_losses": 0.08
+  },
+  {
+   "games": 38000,
+   "vs_random": 1.0,
+   "vs_bot": 0.94,
+   "vs_bot_losses": 0.06
+  },
+  {
+   "games": 40000,
+   "vs_random": 1.0,
+   "vs_bot": 0.84,
+   "vs_bot_losses": 0.1
+  }
+ ]
+}
