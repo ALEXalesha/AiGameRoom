@@ -204,15 +204,16 @@ def plan_copies(game_id, entry, src):
     raise VendorError(f"{game_id}: неизвестная раскладка {layout}")
 
 
-def vendor(game_id, entry, src, games_dir, package=None, today=None):
-    """Собрать копию игры в games_dir/<game_id>. Вернуть отчёт {файлы, предупреждения}."""
+def vendor(game_id, entry, src, games_dir, package=None, today=None, discard=to_recycle_bin):
+    """Собрать копию игры в games_dir/<game_id>. Вернуть отчёт {файлы, предупреждения}.
+    discard(путь) убирает прежнюю копию - по умолчанию в Корзину (тесты подменяют)."""
     package = package or f"{os.path.basename(os.path.normpath(games_dir))}.{game_id}"
     src = os.path.abspath(src)
     copies, mapping = plan_copies(game_id, entry, src)
     dest = os.path.join(games_dir, game_id)
     tmp = os.path.join(games_dir, f".vendor-{game_id}")
     if os.path.exists(tmp):
-        to_recycle_bin(tmp)
+        discard(tmp)
     os.makedirs(tmp)
     try:
         for s, rel in copies:
@@ -262,10 +263,10 @@ def vendor(game_id, entry, src, games_dir, package=None, today=None):
             json.dump(info, f, ensure_ascii=False, indent=1)
             f.write("\n")
     except BaseException:
-        to_recycle_bin(tmp)
+        discard(tmp)
         raise
     if os.path.exists(dest):
-        to_recycle_bin(dest)
+        discard(dest)
     os.replace(tmp, dest)
     return {"files": count, "warnings": warnings, "info": info}
 

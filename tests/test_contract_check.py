@@ -99,6 +99,11 @@ def test_bad_game_info_is_explained():
     assert "1.2.3" in by["info.version"]
     assert "langs" in by["info.langs"]
     assert "нет ключей" not in " ".join(by.values())
+    base = {"id": "a", "title": {"ru": "a", "en": "a"}, "summary": {"ru": "a", "en": "a"}, "preview": "p.png"}
+    for bad in ("1", "1.2", "1.2.x", 1.2):
+        assert [f.rule for f in check_info({**base, "version": bad})] == ["info.version"], bad
+    for good in ("0.9.0", "1.0.1", "2.0.0-beta.1"):
+        assert check_info({**base, "version": good}) == [], good
     assert "нет ключей: summary" in check_info({"id": "a", "title": {"ru": "a", "en": "a"},
                                                "preview": "p.png", "version": "1.0.0"})[0].text
 
