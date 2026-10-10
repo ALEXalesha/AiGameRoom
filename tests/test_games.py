@@ -124,6 +124,7 @@ def test_durak_pause_stops_demo_game(shell, qapp):
     assert wait_until(qapp, lambda: len(s.moves) >= 3, 10.0)
     shell.tabs.setCurrentIndex(0)                 # спрятали - партия ИИ против ИИ стоит
     assert tab.paused and not game.timer.isActive()
+    assert game.hidden                            # оболочка позвала pause() самого Дурака (1.0.0)
     for _ in range(40):                           # дожидаемся хода, что уже считался в потоке
         qapp.processEvents()
         time.sleep(0.01)
@@ -134,7 +135,7 @@ def test_durak_pause_stops_demo_game(shell, qapp):
         time.sleep(0.01)
     assert len(s.moves) == frozen
     shell.tabs.setCurrentWidget(tab)
-    assert not tab.paused
+    assert not tab.paused and not game.hidden
     assert wait_until(qapp, lambda: len(s.moves) > frozen or s.over, 10.0)
 
 
