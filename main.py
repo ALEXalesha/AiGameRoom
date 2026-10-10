@@ -36,9 +36,11 @@ def main(argv=None):
         offscreen.setup(force=True)
     from PySide6.QtWidgets import QApplication
 
+    from shell.icon import app_icon
     from shell.window import APP_NAME, ShellWindow
     app = QApplication.instance() or QApplication(sys.argv)
     app.setApplicationName(APP_NAME)
+    app.setWindowIcon(app_icon())
     window = ShellWindow()
     window.memory.show()
     if args.game and window.open_game(args.game) is None:

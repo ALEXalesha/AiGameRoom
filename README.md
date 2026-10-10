@@ -62,6 +62,16 @@ Games live as copies in `games/<id>/`: every game calls its package `game`, and 
 with the same name cannot live in one program, so the copy tool rewrites the imports.
 Details: [docs/games.md](docs/games.md).
 
+## Build
+
+```
+pip install pyinstaller pillow
+python build.py                 # dist/AiGameRoom, portable zip and an NSIS installer
+```
+
+One Python and one Qt for all games: the folder is about 150 MB, the installer about 45 MB,
+the games themselves under 2 MB.
+
 ## Tests
 
 ```

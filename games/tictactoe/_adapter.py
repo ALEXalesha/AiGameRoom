@@ -5,14 +5,21 @@
 - тема и громкость берутся из ctx, тема меняется на лету по ctx.changed, а сменённые в
   настройках игры уходят в ctx;
 - кнопки «Выход» во вкладке нет: игру закрывает крестик вкладки;
+- модели - из папки копии, и в собранной оболочке тоже;
 - язык: игра только по-русски (GAME_INFO["langs"]);
 - pause/resume/shutdown: ход сети ждёт в QTimer.singleShot с номером партии (token);
   увеличенный token отменяет его, resume заново запускает ход, если он за сетью.
 """
+import os
+
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QVBoxLayout, QWidget
 
 from games.tictactoe import paths
+
+# Модели лежат рядом с копией (games/tictactoe/models), и в сборке оболочки тоже: свой
+# paths.resource_dir искал бы их в корне сборки, как у отдельного TicTacToeAi.
+paths.resource_dir = lambda: os.path.dirname(os.path.abspath(paths.__file__))
 
 
 class TicTacToeWidget(QWidget):

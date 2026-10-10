@@ -60,6 +60,16 @@ python tools/contract_check.py ../SomeGame --run    # проверка папк�
 одним именем в одной программе не уживаются, поэтому при копировании импорты
 переписываются. Подробно - [docs/games.md](docs/games.md).
 
+## Сборка
+
+```
+pip install pyinstaller pillow
+python build.py                 # dist/AiGameRoom, portable-архив и установщик NSIS
+```
+
+Один Python и один Qt на все игры: папка около 150 МБ, установщик около 45 МБ, сами игры -
+меньше 2 МБ.
+
 ## Проверки
 
 ```
