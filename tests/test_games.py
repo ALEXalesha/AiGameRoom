@@ -105,10 +105,14 @@ def test_durak_closes_while_ai_plays(shell, qapp):
     game.change("mode", "demo")
     game.change("delay_ms", 0)
     game.start_game(seed=7)
-    assert wait_until(qapp, lambda: any(t.isRunning() for t in game.findChildren(QThread)), 5.0)
+    # потоки поиска - у контроллера ИИ (с 1.0.0 без родителя-виджета: не рушатся вместе с ним)
+    jobs = lambda: list(game.ai.jobs) + game.findChildren(QThread)
+    assert wait_until(qapp, lambda: any(t.isRunning() for t in jobs()), 5.0)
+    running = [t for t in jobs() if t.isRunning()]
     started = time.perf_counter()
     seconds = shell.close_game(tab)
     assert seconds < 2.0 and time.perf_counter() - started < 2.5
+    assert wait_until(qapp, lambda: not any(t.isRunning() for t in running), 2.0)
     flush(qapp)
     assert not shell.problems, shell.problems
 
