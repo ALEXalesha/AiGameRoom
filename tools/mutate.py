@@ -3,12 +3,11 @@
     python tools/mutate.py            # все мутанты
     python tools/mutate.py pause      # только с этим словом в имени
 
-Мутант - замена строки в файле. Файл правится на месте, гоняются указанные тесты, затем
-файл восстанавливается (в finally - и при Ctrl+C). Мутант «выжил», если тесты остались
-зелёными: значит, этот кусок не проверен. Во время прогона файлы оболочки не править.
+Прогон - aikit.mutate: сначала тесты без мутанта (красные - стоп), зависание - «пойман»,
+файл восстанавливается в finally. Мутант «выжил», если тесты остались зелёными: значит, этот
+кусок не проверен. Во время прогона файлы оболочки не править.
 """
 import os
-import subprocess
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -34,7 +33,7 @@ MUTANTS = [
      f"{TS} -k slow"),
     ("закрытие: вкладка не удаляется", W, "        tab.deleteLater()\n", "", f"{TS} -k close_tab"),
     ("переключение: скрытая игра не на паузе", W, "            self.current.pause()\n        self.current = new",
-     "            pass\n        self.current = new", f"{TS} -k \"hidden or switching\""),
+     "            pass\n        self.current = new", f"{TS} -k 'hidden or switching'"),
     ("свёрнутое окно: игра идёт", W,
      "            if self.windowState() & Qt.WindowState.WindowMinimized:\n                self.current.pause()",
      "            if self.windowState() & Qt.WindowState.WindowMinimized:\n                pass", f"{TS} -k minimized"),
@@ -73,37 +72,7 @@ MUTANTS = [
 ]
 
 
-def run(mutant, python):
-    name, rel, old, new, tests = mutant
-    path = os.path.join(ROOT, rel)
-    with open(path, encoding="utf-8", newline="") as f:
-        src = f.read()
-    if src.count(old) != 1:
-        return name, f"строка найдена {src.count(old)} раз"
-    try:
-        with open(path, "w", encoding="utf-8", newline="") as f:
-            f.write(src.replace(old, new))
-        cmd = f'"{python}" -m pytest -q -x -p no:cacheprovider {tests}'
-        r = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, timeout=900, shell=True)
-        return name, "пойман" if r.returncode != 0 else "ВЫЖИЛ"
-    finally:
-        with open(path, "w", encoding="utf-8", newline="") as f:
-            f.write(src)
-
-
-def main(argv):
-    flt = argv[1] if len(argv) > 1 else ""
-    mutants = [m for m in MUTANTS if flt in m[0]]
-    alive = 0
-    for m in mutants:
-        name, verdict = run(m, sys.executable)
-        print(f"{verdict:8} {name}", flush=True)
-        alive += verdict != "пойман"
-    print(f"итого {len(mutants)}, не пойманы {alive}")
-    return 1 if alive else 0
-
-
 if __name__ == "__main__":
-    if hasattr(sys.stdout, "reconfigure"):
-        sys.stdout.reconfigure(encoding="utf-8")
-    sys.exit(main(sys.argv))
+    sys.path.insert(0, ROOT)
+    from aikit.mutate import main
+    sys.exit(main(ROOT, MUTANTS, sys.argv[1:]))
