@@ -239,3 +239,31 @@ def test_no_games_folder_shows_empty_home(make_shell, tmp_path):
     w = make_shell(str(tmp_path / "empty_games"))
     assert w.entries == [] and not w.home.empty.isHidden()
     assert w.home.empty.text() == "В папке games/ пока нет игр"
+
+
+def test_shared_statistics_on_cards(make_shell, tmp_path, qapp):
+    from aikit.stats import Stats
+    root = tmp_path / "s"
+    st = Stats(str(root / "good" / "stats.json"))
+    for result in ("win", "win", "loss", "win"):
+        st.record("2p/strong", result)
+    Stats(str(root / "hooks" / "stats.json")).record("x", "draw")
+    w = make_shell(FIXTURE_GAMES, root)
+    assert card(w, "good").played.text() == "партий 4 · побед 3 · лучшая серия 2"
+    assert card(w, "boom").played.text() == "ещё не играли"
+    assert card(w, "broken_import").played.isHidden()
+    assert w.home.count.text() == "Игр: 3 · Партий во всех играх: 5"
+    tab = w.open_game("good")                 # партия сыграна в игре - видно, вернувшись в список
+    tab.ctx.stats.record("2p/strong", "win")
+    w.tabs.setCurrentIndex(0)
+    assert card(w, "good").played.text() == "партий 5 · побед 4 · лучшая серия 2"
+    w.set_lang("en")
+    assert card(w, "good").played.text() == "5 games · 4 wins · best streak 2"
+
+
+def test_statistics_survive_broken_file(make_shell, tmp_path):
+    root = tmp_path / "b"
+    (root / "good").mkdir(parents=True)
+    (root / "good" / "stats.json").write_text("{битый", encoding="utf-8")
+    w = make_shell(FIXTURE_GAMES, root)
+    assert card(w, "good").played.text() == "ещё не играли"

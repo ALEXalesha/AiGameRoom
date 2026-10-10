@@ -1,9 +1,12 @@
-"""Главная вкладка: карточки игр, поиск, тема, язык, громкость."""
+"""Главная вкладка: карточки игр, поиск, тема, язык, громкость, общая статистика."""
+import os
+
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QPixmap
 from PySide6.QtWidgets import (QFrame, QGridLayout, QHBoxLayout, QLineEdit, QScrollArea, QSlider,
                                QVBoxLayout, QWidget)
 
+from aikit.stats import Stats
 from aikit.widgets import button, label, segmented
 
 CARD_W = 320
@@ -40,6 +43,8 @@ class GameCard(QFrame):
         lay.addWidget(self.summary)
         self.note = label(name="hint", wrap=True)
         lay.addWidget(self.note)
+        self.played = label(name="hint", wrap=True)
+        lay.addWidget(self.played)
         self.error = label(name="error", wrap=True)
         self.error.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
         lay.addWidget(self.error)
@@ -48,8 +53,13 @@ class GameCard(QFrame):
         self.play.setVisible(entry.ok)
         lay.addWidget(self.play)
 
-    def retranslate(self, t, lang, opened):
+    def retranslate(self, t, lang, opened, totals=None):
         e = self.entry
+        if totals and totals["games"]:
+            self.played.setText(t("played", g=totals["games"], w=totals["wins"], s=totals["best_streak"]))
+        else:
+            self.played.setText(t("not_played"))
+        self.played.setVisible(e.ok)
         self.title.setText(e.title(lang))
         self.summary.setText(e.summary(lang))
         notes = []
@@ -151,6 +161,15 @@ class HomePage(QWidget):
         self.columns = 0
         self.retranslate()
 
+    def totals(self):
+        """Общая статистика: stats.json каждой игры в её папке данных (aikit.stats).
+        Игра пишет его сама через ctx.stats - оболочке не нужно её открывать."""
+        out = {}
+        for c in self.cards:
+            if c.entry.ok:
+                out[c.entry.id] = Stats(os.path.join(self.window_.root, c.entry.id, "stats.json")).totals()
+        return out
+
     def visible_cards(self):
         q = self.search.text().strip()
         return [c for c in self.cards if c.matches(q)]
@@ -179,9 +198,12 @@ class HomePage(QWidget):
         self.theme_buttons["light"].setText(t("theme_light"))
         self.lang_label.setText(t("lang"))
         self.volume_label.setText(t("volume"))
-        self.count.setText(t("count", n=sum(c.entry.ok for c in self.cards)))
+        totals = self.totals()
+        played = sum(x["games"] for x in totals.values())
+        self.count.setText(t("count", n=sum(c.entry.ok for c in self.cards))
+                           + (" · " + t("played_total", n=played) if played else ""))
         for c in self.cards:
-            c.retranslate(t, w.lang, w.is_open(c.entry.id))
+            c.retranslate(t, w.lang, w.is_open(c.entry.id), totals.get(c.entry.id))
         self.sync()
         self.relayout()
 

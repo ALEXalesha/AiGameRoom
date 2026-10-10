@@ -20,6 +20,9 @@ TABLES = {
         "nothing_found": "Ничего не нашлось",
         "no_games": "В папке games/ пока нет игр",
         "count": "Игр: {n}",
+        "played": "партий {g} · побед {w} · лучшая серия {s}",
+        "not_played": "ещё не играли",
+        "played_total": "Партий во всех играх: {n}",
     },
     "en": {
         "app": "AI Game Room",
@@ -39,6 +42,9 @@ TABLES = {
         "nothing_found": "Nothing found",
         "no_games": "No games in the games/ folder yet",
         "count": "Games: {n}",
+        "played": "{g} games · {w} wins · best streak {s}",
+        "not_played": "not played yet",
+        "played_total": "Games played in total: {n}",
     },
 }
 

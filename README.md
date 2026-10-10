@@ -24,6 +24,8 @@ Each game is developed in its own repository and follows one contract
   game's threads within 2 seconds and frees its memory.
 - **Shared settings:** Paint themes (dark and light), Russian and English, volume. Changing them
   in the shell or inside any game reaches every open game.
+- **Shared statistics:** every card shows games played, wins and the best winning streak; the
+  header shows the total over all games.
 - The window reopens where it was closed.
 - Python, PySide6 and numpy only. No pygame.
 

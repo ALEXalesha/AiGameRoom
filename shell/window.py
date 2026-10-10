@@ -176,7 +176,7 @@ class ShellWindow(QMainWindow):
             if not self.isMinimized():
                 new.resume()
         else:
-            self.home.sync()
+            self.home.retranslate()           # статистика могла измениться, пока шла игра
 
     def close_tab(self, index):
         widget = self.tabs.widget(index)
