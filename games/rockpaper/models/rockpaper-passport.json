@@ -1,0 +1,1773 @@
+{
+ "version": "0.1.0",
+ "matches_per_check": 40,
+ "rounds_per_match": 100,
+ "checks": [
+  {
+   "k": 3,
+   "level": "strong",
+   "bot": "repeat",
+   "seed": 3000,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.7688,
+    "tie": 0.1265,
+    "loss": 0.1047,
+    "decisive_win": 0.8801
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.8279,
+    "tie": 0.0957,
+    "loss": 0.0764,
+    "decisive_win": 0.9155
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.6308,
+    "tie": 0.1983,
+    "loss": 0.1708,
+    "decisive_win": 0.7869
+   },
+   "seconds": 5.3,
+   "sample": [
+    "TWTTTTLWLTLWWWLTLWWWWWWWWWWWLTWLWWWWWWTTWTTWWWWWWWWWWWWWTWTWWWWWWWTWWWWWWTWWWWWWWWWWWWLWWWWWWWWWWWTW",
+    "LWTTLWWTWWWWWWWTTWWWWWWWWWWLWWWWWWWWWWWWWWLLWWWWWWTTWWWWWWWWWWWWWWTLTWWWWWWWWWWWLLLLWWWWWWWWWWWLWWWW"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "strong",
+   "bot": "cycle",
+   "seed": 3001,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.9483,
+    "tie": 0.0272,
+    "loss": 0.0245,
+    "decisive_win": 0.9748
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 1.0,
+    "tie": 0.0,
+    "loss": 0.0,
+    "decisive_win": 1.0
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.8275,
+    "tie": 0.0908,
+    "loss": 0.0817,
+    "decisive_win": 0.9102
+   },
+   "seconds": 5.3,
+   "sample": [
+    "TTLWLTTLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "WTTLLWWTWTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "strong",
+   "bot": "wsls",
+   "seed": 3002,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.8978,
+    "tie": 0.0475,
+    "loss": 0.0548,
+    "decisive_win": 0.9425
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.9979,
+    "tie": 0.0011,
+    "loss": 0.0011,
+    "decisive_win": 0.9989
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.6642,
+    "tie": 0.1558,
+    "loss": 0.18,
+    "decisive_win": 0.7868
+   },
+   "seconds": 5.3,
+   "sample": [
+    "LTWLTWWTTTWTWTLWTLLWTLWWWWLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTLWTWTWWWLLLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "strong",
+   "bot": "markov2",
+   "seed": 3003,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.6705,
+    "tie": 0.178,
+    "loss": 0.1515,
+    "decisive_win": 0.8157
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.7543,
+    "tie": 0.1389,
+    "loss": 0.1068,
+    "decisive_win": 0.876
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.475,
+    "tie": 0.2692,
+    "loss": 0.2558,
+    "decisive_win": 0.6499
+   },
+   "seconds": 5.1,
+   "sample": [
+    "TTWLLTTWLWTWWTTLLTTTTTWLWTWTWWTWWWWTLWWTWWWWWWLWWWWWWWWWWWWWWWWWWWWWTWWWWWWWTWWWWWWWWWWWTWWWLTLLTLWW",
+    "LTTLTTWLTTTWWWWTWLWWWWWWTWWWWLWLWLWWWWWWWLTWWWWWWWWLWWLLWWWTWWWTLTWWTWWWWWWWWWWWWWLWWLWTTWWWWWWTWLTW"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "strong",
+   "bot": "biased",
+   "seed": 3004,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.3698,
+    "tie": 0.3342,
+    "loss": 0.296,
+    "decisive_win": 0.5554
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3796,
+    "tie": 0.3314,
+    "loss": 0.2889,
+    "decisive_win": 0.5678
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3467,
+    "tie": 0.3408,
+    "loss": 0.3125,
+    "decisive_win": 0.5259
+   },
+   "seconds": 5.2,
+   "sample": [
+    "LLLTLWWTTLWTLWLLLWWWLLTTTWWTWTTWWWWTTLWWWTWLLLTLWLTLTWWWTWWLWLTTTTTWTTWLWTWWWWWTLTWTWWWWLWLLTLLTLWTT",
+    "TWTWTTTTLWLLTTLLLTWLLWTLWLTTTLTTTLTLLWLTLWTLLWTTTLLTTLTWLTTLLLLLTTWTLTWLTLWWLLWTLWWTTTLLLTWTTTWLTTTL"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "strong",
+   "bot": "human",
+   "seed": 3005,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.4095,
+    "tie": 0.2965,
+    "loss": 0.294,
+    "decisive_win": 0.5821
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.4375,
+    "tie": 0.2843,
+    "loss": 0.2782,
+    "decisive_win": 0.6113
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3442,
+    "tie": 0.325,
+    "loss": 0.3308,
+    "decisive_win": 0.5099
+   },
+   "seconds": 5.1,
+   "sample": [
+    "TTLTLLTLTLLTLLWLWWLLWTLLTTTTLTLTWTWLTLLTLWLTLLLLLWTTTTTTWLWLTWTLWTWLLTTLTWWLWWWTWWWWWTTTTWWWWTWLWWTT",
+    "LTLLTWLTWLTWLWLLLWTLTLLLWLWLLLWTTLWLWLLLTWTTLWWTTLLTTWLLLWLWTLLWWWWWWLLTWTTLLWTWLWLTTLTWTWWLWWWLWTLL"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "strong",
+   "bot": "random",
+   "seed": 3006,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.3392,
+    "tie": 0.3235,
+    "loss": 0.3372,
+    "decisive_win": 0.5015
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3379,
+    "tie": 0.3239,
+    "loss": 0.3382,
+    "decisive_win": 0.4997
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3425,
+    "tie": 0.3225,
+    "loss": 0.335,
+    "decisive_win": 0.5055
+   },
+   "seconds": 5.3,
+   "sample": [
+    "TLWTTWLTLWTTTTWTLWWWLTTLWWTWTTTWTTTWWWWLLWWLWWTWWWWWTTTTWLTLLTWTTTWWWTLLWLLWTLTTWWLWWTWLLTLLLTTTTWWW",
+    "WWLTWTTTWWLLLTLWLTLLWLWWWTLWWWWTTWTLWLWLWLTWTLTLLLLLLLTTTLWLTLLWTWWTLLLLLWWWLTWWLWTLTLLLTWLTTTLTTWWL"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "strong",
+   "bot": "mirror",
+   "seed": 3007,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.405,
+    "tie": 0.2835,
+    "loss": 0.3115,
+    "decisive_win": 0.5652
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.4168,
+    "tie": 0.2789,
+    "loss": 0.3043,
+    "decisive_win": 0.578
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3775,
+    "tie": 0.2942,
+    "loss": 0.3283,
+    "decisive_win": 0.5348
+   },
+   "seconds": 5.2,
+   "sample": [
+    "LLTTWTTTWLWLWTTTLLLWLWLTWWTWTTWLTLLWWLWWWWLLWTLLWWWLWLWWWWLWTTTLWLWTTTLTWTWWTWTLTLWLWWLLTTTWLWLWTWWW",
+    "WLTLTLLWLTWLTWWLWTLLLWLWWTWWWLTLWTWWWTTWWLWTWLTWLWTLLWTTLTTWTWWTWTWTTTTWWWTTLWTWLTWWWLWLTLTLTLLLWWWW"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "strong",
+   "bot": "exploit",
+   "seed": 3008,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.325,
+    "tie": 0.3292,
+    "loss": 0.3458,
+    "decisive_win": 0.4845
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3282,
+    "tie": 0.33,
+    "loss": 0.3418,
+    "decisive_win": 0.4899
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3175,
+    "tie": 0.3275,
+    "loss": 0.355,
+    "decisive_win": 0.4721
+   },
+   "seconds": 10.2,
+   "sample": [
+    "WWWTLWWLWLLLLWWWTLTTLLLLLLWLLLTWWTLTTLTLWLTWTTLWWLTTTTLLTWTTTLTLLWTWWWWWWTLTWTTTLLWTWWLLTWLTWTWLLTWW",
+    "TLTTWLLLWWLTTLTTLWLWWWTWLWTLLLWTWTTLWLLLTWTWLTLTWWTLWTLWTWLWWLWWTLWTWLLWLWWTLWLLWTLWLWWTWLLWLLWWWLWL"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "medium",
+   "bot": "repeat",
+   "seed": 3100,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.7883,
+    "tie": 0.1195,
+    "loss": 0.0922,
+    "decisive_win": 0.8952
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.8379,
+    "tie": 0.0975,
+    "loss": 0.0646,
+    "decisive_win": 0.9284
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.6725,
+    "tie": 0.1708,
+    "loss": 0.1567,
+    "decisive_win": 0.8111
+   },
+   "seconds": 1.3,
+   "sample": [
+    "LLWWLWWLWWWWWWWWWWWWLLWWTTWWWWWWWWWWLWWWWWLTTTWWWLWWWWWWWWWWWWWWWWWWWWWWWLWWWWWWWWTWLTWWWWWLWLWWWWWW",
+    "WWWWLWWTWWLWWWWWLLWTWWTWWLLWWWTWWWWWWWWWTWWWWWWWWWWWWWWWWWWWWWWTWWWWWWWWWWWWWWWWWTWWWWWWTWWWTWWWWWWW"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "medium",
+   "bot": "cycle",
+   "seed": 3101,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.9467,
+    "tie": 0.0278,
+    "loss": 0.0255,
+    "decisive_win": 0.9738
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 1.0,
+    "tie": 0.0,
+    "loss": 0.0,
+    "decisive_win": 1.0
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.8225,
+    "tie": 0.0925,
+    "loss": 0.085,
+    "decisive_win": 0.9063
+   },
+   "seconds": 1.3,
+   "sample": [
+    "TTLWTWLLLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "TTWLWWTWWLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "medium",
+   "bot": "wsls",
+   "seed": 3102,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.5433,
+    "tie": 0.2112,
+    "loss": 0.2455,
+    "decisive_win": 0.6887
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.6154,
+    "tie": 0.1839,
+    "loss": 0.2007,
+    "decisive_win": 0.754
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.375,
+    "tie": 0.275,
+    "loss": 0.35,
+    "decisive_win": 0.5172
+   },
+   "seconds": 1.2,
+   "sample": [
+    "TWLWWLLWTLLLWLTWLTTLLLTWTWWWWWLLWWLWTTTLWWLLLTLWTTTWWLLLLWTWWLWTWLTTWTWTWTWLLWTWTLTTTTLTTWWWWWWWWWWW",
+    "LTTTWLTWWTLTLWWLTTLTLWLLWLTWLWWWLWWLWWLTWWWWWLTTTWLTLTLTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "medium",
+   "bot": "markov2",
+   "seed": 3103,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.6805,
+    "tie": 0.1605,
+    "loss": 0.159,
+    "decisive_win": 0.8106
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.7743,
+    "tie": 0.1154,
+    "loss": 0.1104,
+    "decisive_win": 0.8753
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.4617,
+    "tie": 0.2658,
+    "loss": 0.2725,
+    "decisive_win": 0.6288
+   },
+   "seconds": 1.1,
+   "sample": [
+    "TLLWLLLLLTLLWTWLTTLWWLWLLLTLWTLLLWTLWTLWWWWWWTWWWWWWLLLWWLWWWLTWWWWWWWWWWWWLWWWWTTWWTWWTWWWWTWWWWWWW",
+    "LLTTTLLTTLTWLLTWLWTWWLTTLWWTWWTWLWWWWWWWWWWWWWWWWWWLLTWWTWWWWWWWWWWWWWWWTWWLTWWWTLWTWTLWWTWWWWWTTWWW"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "medium",
+   "bot": "biased",
+   "seed": 3104,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.4328,
+    "tie": 0.3038,
+    "loss": 0.2635,
+    "decisive_win": 0.6215
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.4493,
+    "tie": 0.3075,
+    "loss": 0.2432,
+    "decisive_win": 0.6488
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3942,
+    "tie": 0.295,
+    "loss": 0.3108,
+    "decisive_win": 0.5591
+   },
+   "seconds": 1.2,
+   "sample": [
+    "WTWLTTTWWWLWTWTLWWTWLWLTLWLLLWWLTTWTWWWTWWWWTLTTLTWWTWWWTWWWWLLTLWTWTLTTLWLWWTLLWTWTTWWWWTWLLTTTWLWT",
+    "LTTTLLTWLTWLWTLLWLTLLWTWTWWWWTLWWWTWTLTLWTTLTLLTTLWTWWWLTWTLWTTLTTTLLTTWLWWLLWTLWWLTWWLTLLWLLLLWTWTW"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "medium",
+   "bot": "human",
+   "seed": 3105,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.3375,
+    "tie": 0.336,
+    "loss": 0.3265,
+    "decisive_win": 0.5083
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3336,
+    "tie": 0.3364,
+    "loss": 0.33,
+    "decisive_win": 0.5027
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3467,
+    "tie": 0.335,
+    "loss": 0.3183,
+    "decisive_win": 0.5213
+   },
+   "seconds": 1.2,
+   "sample": [
+    "LTWTLWLTLLLWLTTTTLLLWTWTLWTTLTLLWLLLWTLWTWTWWTLLTLWTLWTLWWTLLTLLTTWLLTTTWTTTTWWLTWWLLTWLTLWWWTWWTTWT",
+    "TLWTLLTLWLLWTTTTWLWTTTTWWTWLLTWTTLLLWLTWWLWTLTTTTWLLTWWWTTTTWTWLWLTTLLWWWTWWTTLWLTTWLTLLWLLWWLTTLLLT"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "medium",
+   "bot": "random",
+   "seed": 3106,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.317,
+    "tie": 0.337,
+    "loss": 0.346,
+    "decisive_win": 0.4781
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.315,
+    "tie": 0.3375,
+    "loss": 0.3475,
+    "decisive_win": 0.4755
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3217,
+    "tie": 0.3358,
+    "loss": 0.3425,
+    "decisive_win": 0.4843
+   },
+   "seconds": 1.3,
+   "sample": [
+    "TWWLTTWLWLTLWWWWLLLWWLLWWTLTTTWWWWWWLLWTTTLWLLLWLTLTLWTLWLLWLWWWTLLLTTTWWLTLWTWTWLLWLLLTWWLTLLTLTWWW",
+    "WTWTTLWTWLTLLWLTTTLLTWTTTWLWLLLTLTLWLTLTLLLLWTLWTWTLTTLLLWTLLTWTTWTLTTLWWWTWLWWTWTTWWLWWLWTWTTLLLTLL"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "medium",
+   "bot": "mirror",
+   "seed": 3107,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.345,
+    "tie": 0.3185,
+    "loss": 0.3365,
+    "decisive_win": 0.5062
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3464,
+    "tie": 0.3182,
+    "loss": 0.3354,
+    "decisive_win": 0.5081
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3417,
+    "tie": 0.3192,
+    "loss": 0.3392,
+    "decisive_win": 0.5018
+   },
+   "seconds": 1.2,
+   "sample": [
+    "TTLLTWWLWWLWLTWWWLTWTLLWLTTTTLTTTWLLWWLTTWWLTTTWLWLTTLTLTTTLLLWWLTWLTLWLLWLWTTTTTWTTWLTTWLLWLLTLLWLT",
+    "WWTLLTTTLWWWLLLWTTTLTLLWTTWWLTWLTTLWLLLWLTTTTWLLLLTLTTTTLTWTWWLTLWWWWLLWTLWWWWLLTLWWTLWTLWTWLTTWTWTL"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "novice",
+   "bot": "repeat",
+   "seed": 3200,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.5683,
+    "tie": 0.2697,
+    "loss": 0.162,
+    "decisive_win": 0.7782
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.6029,
+    "tie": 0.2586,
+    "loss": 0.1386,
+    "decisive_win": 0.8131
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.4875,
+    "tie": 0.2958,
+    "loss": 0.2167,
+    "decisive_win": 0.6923
+   },
+   "seconds": 0.6,
+   "sample": [
+    "WWWLWWTWWWWWWWWWWWWWWWWWWWWWWWWLLWWLWWWWWWWLLWWLLTTTLLWLWTTTTTTTWWWWWWWLLLLTTWWWWWLLLLLWWWWWWWWWWWTT",
+    "LLTWTTTTTLTWWLWTLWTWLTTWTLWWWWWWWWWWWTTTTTTTWTTTTTTTLTTTTWLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "novice",
+   "bot": "cycle",
+   "seed": 3201,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.337,
+    "tie": 0.3352,
+    "loss": 0.3277,
+    "decisive_win": 0.507
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3364,
+    "tie": 0.3361,
+    "loss": 0.3275,
+    "decisive_win": 0.5067
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3383,
+    "tie": 0.3333,
+    "loss": 0.3283,
+    "decisive_win": 0.5075
+   },
+   "seconds": 0.5,
+   "sample": [
+    "TLTWWWTLWTWWTWLLWWTTWLLTWTLLTTTWTLLLLWTWLLLLLTTTTTTTWWLWWWLLTWWLLLLWLWTTWTTWWTLTWWWWTWWWLTWLLTTWWTLW",
+    "LLWTTTTTLTLTWLTTLWWWWWWLTLTWLLWLTTTWWWLLWTLLLTTWTTWTWWWWLLLLLWLLWLWLWWLLLTTWTTWLLTLWLTTTTLTWWLLLTTTT"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "novice",
+   "bot": "wsls",
+   "seed": 3202,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.3367,
+    "tie": 0.3132,
+    "loss": 0.35,
+    "decisive_win": 0.4904
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3414,
+    "tie": 0.3111,
+    "loss": 0.3475,
+    "decisive_win": 0.4956
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3258,
+    "tie": 0.3183,
+    "loss": 0.3558,
+    "decisive_win": 0.478
+   },
+   "seconds": 0.6,
+   "sample": [
+    "LWLWTLWLTLWTLLWLWTTTWTWTLLWTWTLLWTTTTWTTWWTLLTLWLWTWLTWWTLLLWLWTWLWLLTLTTTLLLWLTWLWWWLTWLWLTTWTTLWWW",
+    "WWWTWWLWLLWLTWLLWTTTLTWWTLLLWTWWLWWWTLLTLWWLWWTWTLTWTLLLLTLLTWTTWTLLTLLWWLLWLTWLTWLLLLWLLLTWTWWTTWWW"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "novice",
+   "bot": "markov2",
+   "seed": 3203,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.506,
+    "tie": 0.2843,
+    "loss": 0.2097,
+    "decisive_win": 0.707
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.5225,
+    "tie": 0.285,
+    "loss": 0.1925,
+    "decisive_win": 0.7308
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.4675,
+    "tie": 0.2825,
+    "loss": 0.25,
+    "decisive_win": 0.6516
+   },
+   "seconds": 0.7,
+   "sample": [
+    "LTTTTTWTWWWTTWTTLLWLWLWWLWLWTWLLTTWWLLTWWWWWWWWWWWWWWLLWLLTTTWWWWWWWWWWWWTLTTWWWWWWWWWWTTWWWLLWLLWWW",
+    "LWWLWWTWLLWLLWWWLWWTTWWWWTTLWWWWWWLWLLLTTTLWTWTWTTTLWWTTTTLWLTWTWLLWTWLWWTTLLLWWTWLWWTTLTLTTWTWWTWTW"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "novice",
+   "bot": "biased",
+   "seed": 3204,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.426,
+    "tie": 0.3118,
+    "loss": 0.2622,
+    "decisive_win": 0.619
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.4582,
+    "tie": 0.3107,
+    "loss": 0.2311,
+    "decisive_win": 0.6648
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3508,
+    "tie": 0.3142,
+    "loss": 0.335,
+    "decisive_win": 0.5115
+   },
+   "seconds": 0.6,
+   "sample": [
+    "LWLWLLTLLTLLLTTLWWWWLLLTTLTTWWTTTWWWWTLTWLTLWTLLTTWTLWWWWWWLWTLWTWWWWWWLTWWLLWWTWWWWTWTWTWWTTTWWWTWW",
+    "LWLWLTWWWLLWLTLTWLTLLWTWTLWLTTLTTTLWTTWLTTLTTWTTTLWLTWLLWWTTWTTWLWTTLLTLLWTLWTLTTLTTWTLTTLTWTTTWWLLT"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "novice",
+   "bot": "human",
+   "seed": 3205,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.3285,
+    "tie": 0.331,
+    "loss": 0.3405,
+    "decisive_win": 0.491
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3271,
+    "tie": 0.3286,
+    "loss": 0.3443,
+    "decisive_win": 0.4872
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3317,
+    "tie": 0.3367,
+    "loss": 0.3317,
+    "decisive_win": 0.5
+   },
+   "seconds": 0.6,
+   "sample": [
+    "WLWLWTTLLWLTLLLLWWWWWTTWWLWWTWWTLWTWWWLTLWLTLWLLWWWTWLTLWTTLWWTTLTTTWLTLLTTLTWWLTWTTLTTWLWLLTTTWLTTL",
+    "TLWWLLTLWWTLTWTWTTWTWLLLWLLTLLLLLLLLTWWTTTTTLTLWTLWTLWLLLLLTWLTTLLTTWLWTTWWLTWWTTTLLLLWTWWTLWWLLLTTL"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "novice",
+   "bot": "random",
+   "seed": 3206,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.3375,
+    "tie": 0.3355,
+    "loss": 0.327,
+    "decisive_win": 0.5079
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3357,
+    "tie": 0.3296,
+    "loss": 0.3346,
+    "decisive_win": 0.5008
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3417,
+    "tie": 0.3492,
+    "loss": 0.3092,
+    "decisive_win": 0.525
+   },
+   "seconds": 0.5,
+   "sample": [
+    "LLWTWTTLWWTWLWLTWLWWTTLTTTWWTTLLLTLWLTWTTLTTLLWWWTWTTLLWTLLLTTTTTTTWTTWLTTLTTWWTWLWTLLWTLWTLLWTTWWTT",
+    "TTLWTTTTTWWLLLWLTWWTLLLWLWWLTWLWWWLTTLLWWWWTLWTWWTTLWTTWWWWWLLWLWLLLLTLLLWLTWTLWTLLWTWWTLTLLLTTTWLLT"
+   ]
+  },
+  {
+   "k": 3,
+   "level": "novice",
+   "bot": "mirror",
+   "seed": 3207,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.3277,
+    "tie": 0.31,
+    "loss": 0.3623,
+    "decisive_win": 0.475
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3218,
+    "tie": 0.3054,
+    "loss": 0.3729,
+    "decisive_win": 0.4632
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3417,
+    "tie": 0.3208,
+    "loss": 0.3375,
+    "decisive_win": 0.5031
+   },
+   "seconds": 0.7,
+   "sample": [
+    "WLTTTLLWWLLWWWLTLTWTLLWWTTTWWWTTLTLLLLLLWLTTTWLLWTTTWWLLTLWLWTTWLWWWTWTWTTLLLLWWTLLWLWTLLLWLLLWWWLWT",
+    "WTWLTLLWLLTTWTWWTWLWWWTLLWLTTLLWWLLTTWLTTTWLTLLWTWWTTWLLWWWLTWTWLLWTTLLWTWTLTLWWWWTWLLLWTLWWLWTLLTTL"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "strong",
+   "bot": "repeat",
+   "seed": 5000,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.8137,
+    "tie": 0.0663,
+    "loss": 0.12,
+    "decisive_win": 0.8715
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.8607,
+    "tie": 0.0507,
+    "loss": 0.0886,
+    "decisive_win": 0.9067
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.7042,
+    "tie": 0.1025,
+    "loss": 0.1933,
+    "decisive_win": 0.7846
+   },
+   "seconds": 10.0,
+   "sample": [
+    "LWLWWWTLLLWWTWLWWWWWWWWWWWWWWWTWWWWWWWLWWWWWTWWWWWLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWLWWWWWWLWWWWTWWW",
+    "WLWLLLTWWWWWWWWLTWWWWLTWTWLWWWLWWWTWWWWWWLTWWLWWWWLTWWWWLWWWWWWWWWWWTWWWWWWTWWWWWLLLTWWWWWWWWWWWWWWW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "strong",
+   "bot": "cycle",
+   "seed": 5001,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.953,
+    "tie": 0.0163,
+    "loss": 0.0307,
+    "decisive_win": 0.9687
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 1.0,
+    "tie": 0.0,
+    "loss": 0.0,
+    "decisive_win": 1.0
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.8433,
+    "tie": 0.0542,
+    "loss": 0.1025,
+    "decisive_win": 0.8916
+   },
+   "seconds": 14.1,
+   "sample": [
+    "WWLTWTWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "LWLLTTWWWWLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "strong",
+   "bot": "wsls",
+   "seed": 5002,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.9077,
+    "tie": 0.0338,
+    "loss": 0.0585,
+    "decisive_win": 0.9395
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.9996,
+    "tie": 0.0,
+    "loss": 0.0004,
+    "decisive_win": 0.9996
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.6933,
+    "tie": 0.1125,
+    "loss": 0.1942,
+    "decisive_win": 0.7812
+   },
+   "seconds": 10.1,
+   "sample": [
+    "WTLLLWWWLTLWTLWWWWWWWWWWWWWWWWWWWWWWWWWLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "LLLWWWWWWWTLTWLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "strong",
+   "bot": "markov2",
+   "seed": 5003,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.6282,
+    "tie": 0.134,
+    "loss": 0.2377,
+    "decisive_win": 0.7255
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.6961,
+    "tie": 0.1139,
+    "loss": 0.19,
+    "decisive_win": 0.7856
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.47,
+    "tie": 0.1808,
+    "loss": 0.3492,
+    "decisive_win": 0.5738
+   },
+   "seconds": 11.5,
+   "sample": [
+    "LTTTTWTWLLWWLLLWLTLTWWWWWWWWWWWWWLLWLLWWLTLWWWWWWLWTWTWWWTLLWTWWWWWTWWWWTWWWWWWWWWLWTWWWWWLWWWLWWWWL",
+    "WLWWTWLWTWTLLWLLLWWWWLTWWWWWWWWWLTWLWTTWLWWWLWWTWWWWTWWLWWWLWWWLWWTTTWWWWWWWWWWWWLWLWWWLWWWWWLLWWWWW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "strong",
+   "bot": "biased",
+   "seed": 5004,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.416,
+    "tie": 0.2037,
+    "loss": 0.3802,
+    "decisive_win": 0.5224
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.4189,
+    "tie": 0.2039,
+    "loss": 0.3771,
+    "decisive_win": 0.5262
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.4092,
+    "tie": 0.2033,
+    "loss": 0.3875,
+    "decisive_win": 0.5136
+   },
+   "seconds": 10.7,
+   "sample": [
+    "LWTLWTWTLWWLLLWWWLTTTLLWTLLTLWLTTTWTWWWTWWWTLWWWTWTWTLWWWTWWLWWWLTTTTTTLWWWLTLWTWTLWTWWWWWLWWWWTWWWT",
+    "LLTLLWLWLTLWLLLWLLWTLLWTTLLWLLWLTLWLWWTTTTTWWLTLTWLTTLLLLWWLTTWLWLWTLLWLWTTWWWWLWWTLWTWLWWWTWTWWTWWW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "strong",
+   "bot": "human",
+   "seed": 5005,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.454,
+    "tie": 0.1935,
+    "loss": 0.3525,
+    "decisive_win": 0.5629
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.4679,
+    "tie": 0.1846,
+    "loss": 0.3475,
+    "decisive_win": 0.5738
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.4217,
+    "tie": 0.2142,
+    "loss": 0.3642,
+    "decisive_win": 0.5366
+   },
+   "seconds": 10.2,
+   "sample": [
+    "LLWLLLWLWTWWLWLLLLTTLWLWTLWLLWWWLTTWLLWLTWTTWWLWTLWLTWLWLWWWWLWWWTWTLWLLLLWLWWWWLWLWLLLWWLLTLWWLLWLL",
+    "TLTWWTLWLLWLWLWLWLLLWTTWLWWLLWWWLTWLTLWWLLWLWWWTTLLLLWTLWLLLTWTWWTLLWTWTLTLWWLTLWLLLWWWWLTWWLWWLLWWW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "strong",
+   "bot": "random",
+   "seed": 5006,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.4133,
+    "tie": 0.1973,
+    "loss": 0.3895,
+    "decisive_win": 0.5148
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.4136,
+    "tie": 0.1964,
+    "loss": 0.39,
+    "decisive_win": 0.5147
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.4125,
+    "tie": 0.1992,
+    "loss": 0.3883,
+    "decisive_win": 0.5151
+   },
+   "seconds": 10.8,
+   "sample": [
+    "LLWTWLTLWLLTWLLWLLWLLLWWWLLLLWTWTWWWWLWWTLLWTWWWWLLWWTTWLWLLLLWLWTLWWTLWTTWTTLWWLWLLLWLTLLWLWWWLWLTL",
+    "WTTLWWWLLWWTWWWLWWTWTWTLTLWLLLTLWWLLWLWTWLTWLLLTTWLLTWLTLTTTLWLLLTWWWWLWLWWTLLLLLWWWLLWWLLLWWTLTWTLW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "strong",
+   "bot": "mirror",
+   "seed": 5007,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.4592,
+    "tie": 0.1797,
+    "loss": 0.361,
+    "decisive_win": 0.5599
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.4664,
+    "tie": 0.1786,
+    "loss": 0.355,
+    "decisive_win": 0.5678
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.4425,
+    "tie": 0.1825,
+    "loss": 0.375,
+    "decisive_win": 0.5413
+   },
+   "seconds": 12.7,
+   "sample": [
+    "TWWLTLLWTWLLLLLTLTWTTWLWTTLLWWWLWWWLWLTWTLTTWLWTWWLTWLWWWLLWLLLWWTLLTWWWLLTWLLLTLWLTWWLWTLWTTWLWLWWL",
+    "TTLWLLWTWLWWLWWLLWLLWWLLWLWTLLWLLTLLLLWLTLLWWLLLWLLWLLTWWLWWWWWLWWWLLWWLLWWTTTTTTWWWLWLLWTWWTWLTLWLW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "strong",
+   "bot": "exploit",
+   "seed": 5008,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.382,
+    "tie": 0.1923,
+    "loss": 0.4258,
+    "decisive_win": 0.4729
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3814,
+    "tie": 0.1918,
+    "loss": 0.4268,
+    "decisive_win": 0.4719
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3833,
+    "tie": 0.1933,
+    "loss": 0.4233,
+    "decisive_win": 0.4752
+   },
+   "seconds": 21.9,
+   "sample": [
+    "LTLLLLWLWLLLWWWTTWWWWLTLWLTTLLLLWTLTWWWLLWWWWLTLLLWWTLWWTLTLWLWWTTWWTLLLWWLTLLWLLLWLWWWLLLWTLWWWLWLL",
+    "LLLWTLLTLWLWLWLLLWLWTLLWTLTWTWLLWTTLWWLWLWTWWLLWLTWTWLTLLLLLWTTWWLLWLWWLTLLLWTLWLWLLWTTLLLWTTWWTTWTT"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "medium",
+   "bot": "repeat",
+   "seed": 5100,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.7815,
+    "tie": 0.0825,
+    "loss": 0.136,
+    "decisive_win": 0.8518
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.825,
+    "tie": 0.0646,
+    "loss": 0.1104,
+    "decisive_win": 0.882
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.68,
+    "tie": 0.1242,
+    "loss": 0.1958,
+    "decisive_win": 0.7764
+   },
+   "seconds": 4.1,
+   "sample": [
+    "LLTLWWTTWWWLWLLLWTWWWLLWWWLTWWWWWLWWWTWTWLTWWLWWWWWWWWWWWWWWWWLWWWWWWWWWWWWWWWWWWWWWWWLWWWWWWWWWWWWW",
+    "WTTTLLTWWWWWWWWWWWTWWWWWWWWWWWWWWLLWWWLLWWTWWWWWWWWWWWTWWWLWWWWWTWWWWWWTWLWWWWWLWWWWWWWWLWWWLWWWWWWW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "medium",
+   "bot": "cycle",
+   "seed": 5101,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.953,
+    "tie": 0.017,
+    "loss": 0.03,
+    "decisive_win": 0.9695
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 1.0,
+    "tie": 0.0,
+    "loss": 0.0,
+    "decisive_win": 1.0
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.8433,
+    "tie": 0.0567,
+    "loss": 0.1,
+    "decisive_win": 0.894
+   },
+   "seconds": 2.6,
+   "sample": [
+    "LTWWTWWWWWLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW",
+    "LLLTWLWWWWLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "medium",
+   "bot": "wsls",
+   "seed": 5102,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.387,
+    "tie": 0.1767,
+    "loss": 0.4363,
+    "decisive_win": 0.4701
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3818,
+    "tie": 0.1746,
+    "loss": 0.4436,
+    "decisive_win": 0.4626
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3992,
+    "tie": 0.1817,
+    "loss": 0.4192,
+    "decisive_win": 0.4878
+   },
+   "seconds": 3.2,
+   "sample": [
+    "LWLLLTTLWLWLTWLWLWLLTTWLLWLWWLWTTWTLTTWLWWWTLTWWLWWWLWWWLLTLLTLWWWTWLWLTTTLWWLLWLTTLWLWLWLWLTTLWTLWW",
+    "TWWLTWLLLLLLWLTWLLWLWTLLLLLWLLTWWTLLLLTWLWLLWLLWWWLWWWWWWTWWLWWLTWTTLWTLLWLWWWTWWTLWLWLWLTLWTLLWTLLW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "medium",
+   "bot": "markov2",
+   "seed": 5103,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.6212,
+    "tie": 0.1338,
+    "loss": 0.245,
+    "decisive_win": 0.7172
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.6936,
+    "tie": 0.11,
+    "loss": 0.1964,
+    "decisive_win": 0.7793
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.4525,
+    "tie": 0.1892,
+    "loss": 0.3583,
+    "decisive_win": 0.5581
+   },
+   "seconds": 3.3,
+   "sample": [
+    "LLTWWWWLLWWTLWLWWWWWWWWWWWWWWWWWWTLLLWWWWWWWWWWWLLWLWWTLLWWWLWLTLWWWWWWWWWWWWWWWWWWWWWWWWWWWWTLTWTWW",
+    "LWWWWWTLWLWWLTLLLLTLWTWWWWWWLLWLWWWLWLWWWTWLTLTLLWWTWWLWWLTTTWWWWWWWWWLWWWLTWWWTTTWTWWLLWWWLWLWWLWWW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "medium",
+   "bot": "biased",
+   "seed": 5104,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.4353,
+    "tie": 0.1953,
+    "loss": 0.3695,
+    "decisive_win": 0.5409
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.4364,
+    "tie": 0.2,
+    "loss": 0.3636,
+    "decisive_win": 0.5455
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.4325,
+    "tie": 0.1842,
+    "loss": 0.3833,
+    "decisive_win": 0.5301
+   },
+   "seconds": 2.7,
+   "sample": [
+    "LLTWWLWLLLLLWLLWLLWLLLLLWLTWLWTTLWWWWLLLLWTWLLWWLTWLTLLWTLLWWWLWLTLTTLWTTLWWLLLWWLWLWTLLLWLWLWTLWLWL",
+    "WLLTTTTWWWLLTWTLWLLTWWWLWWLLLLLWTWLLTLWTWTTWLWWLTTLWLTLWTTLWTLLWLTWLLLWLWWWLWLWLTWWLTLLWWLLTTWLLLTTW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "medium",
+   "bot": "human",
+   "seed": 5105,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.3977,
+    "tie": 0.2,
+    "loss": 0.4022,
+    "decisive_win": 0.4972
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3929,
+    "tie": 0.2007,
+    "loss": 0.4064,
+    "decisive_win": 0.4915
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.4092,
+    "tie": 0.1983,
+    "loss": 0.3925,
+    "decisive_win": 0.5104
+   },
+   "seconds": 2.3,
+   "sample": [
+    "WLLWLWTLWWLTLWWLTLWLWLTWLTLWLLTLTLTWWWWTTLWLTWWTWTTLWWLTLLWLLLWTWWLLWLLLWWWWLLLTWWTTWLLTWLTLLWWTLTLL",
+    "TWWWLWWWLLWLLWTWLLLLLWLWWWWWWWLLWWLWLLLLWWWTWWLWTTTWLLLLWWWWWWLTLWWTLWTWWWTLTLWLTWWWLLLTLLLLLTLTLLWL"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "medium",
+   "bot": "random",
+   "seed": 5106,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.4057,
+    "tie": 0.1978,
+    "loss": 0.3965,
+    "decisive_win": 0.5058
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3993,
+    "tie": 0.1971,
+    "loss": 0.4036,
+    "decisive_win": 0.4973
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.4208,
+    "tie": 0.1992,
+    "loss": 0.38,
+    "decisive_win": 0.5255
+   },
+   "seconds": 2.5,
+   "sample": [
+    "TTTTWLLLLLWTTLLWWTLLWLTTWTLTLWWWTTWLWLLWTLLWLLWLLLWWWWTLLTTWLWTTWWLWWWWTWWTTWWWLLLWTTLLWLTWLTWLWLWLL",
+    "WLTTTWLTWLWWTWLWLTWTLTLWWLLLWTTWTWWLWLWTLLTLLTTTLTWLLLLLWLLLLWLWLLTTLLWLWTLLLWWLLWWWWWWLLLLLTWWLWTWT"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "medium",
+   "bot": "mirror",
+   "seed": 5107,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.4045,
+    "tie": 0.1963,
+    "loss": 0.3992,
+    "decisive_win": 0.5033
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3957,
+    "tie": 0.2004,
+    "loss": 0.4039,
+    "decisive_win": 0.4949
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.425,
+    "tie": 0.1867,
+    "loss": 0.3883,
+    "decisive_win": 0.5225
+   },
+   "seconds": 2.4,
+   "sample": [
+    "WLWTWLTTWLTWWLWLWLWWWLWTLWWLWLWWWLWTLTTLTLWTWWLTTLLWTWLTLLLLTLTWTWTLWTWTWLWLWTWWTTWLLTTTTLLLWTLTWWLL",
+    "TWWLLWTWWWTLTTWWWWTLWLLLLLLWLLLTWWWLLTWWTLLTWWTWTTWTTLTWLLWLTWWTLWLLLLWLLLWWWTWLTLLLLTWLWWWLLLWWLLLT"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "novice",
+   "bot": "repeat",
+   "seed": 5200,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.7023,
+    "tie": 0.1328,
+    "loss": 0.165,
+    "decisive_win": 0.8097
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.7321,
+    "tie": 0.1221,
+    "loss": 0.1457,
+    "decisive_win": 0.834
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.6325,
+    "tie": 0.1575,
+    "loss": 0.21,
+    "decisive_win": 0.7507
+   },
+   "seconds": 0.7,
+   "sample": [
+    "LWWTWWWLLLWLWWWTWWWLTTTTTLWWWWWWWWWWWLWWWWWLLWWWWWWWWWWLLLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWLWWWWWWWWWWWW",
+    "LWWWLWWLLLWTWLLLWWWWWWWWWWWWWWWWWWWWWWWWWWWWWTTTTTTTWTWWLWWWTWWWWWWWWWLLLWWWWWWWLLTWLLLLWWWWWWLLWWWL"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "novice",
+   "bot": "cycle",
+   "seed": 5201,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.4133,
+    "tie": 0.2032,
+    "loss": 0.3835,
+    "decisive_win": 0.5187
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.4104,
+    "tie": 0.2011,
+    "loss": 0.3886,
+    "decisive_win": 0.5136
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.42,
+    "tie": 0.2083,
+    "loss": 0.3717,
+    "decisive_win": 0.5305
+   },
+   "seconds": 0.6,
+   "sample": [
+    "WLTWLLWLLLTWLLWTWWTWWTWLWWLLTTTLWWLTTTLWTLWLLTTWWTTLWLWLWWLWLWWLLWWLLLTLLWWWWLLTLTWLWLLLLLLLWWLLWWLT",
+    "TWWLLLWWTTTLLLTLLLWTWLWWWWLLWLLWWLLWWWLTLWWLLTTLLLWLWTWLLWLTTTWWTWTLWTWTTWLLTTLLTLLLTLWTTTWLWTLTWLLT"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "novice",
+   "bot": "wsls",
+   "seed": 5202,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.3942,
+    "tie": 0.186,
+    "loss": 0.4198,
+    "decisive_win": 0.4843
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3854,
+    "tie": 0.1843,
+    "loss": 0.4304,
+    "decisive_win": 0.4724
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.415,
+    "tie": 0.19,
+    "loss": 0.395,
+    "decisive_win": 0.5123
+   },
+   "seconds": 0.6,
+   "sample": [
+    "LWLWWTWTWTLWLTLWLLWTWLLTTTTWTWWLLLLTWLWLTLLWLLLLWLLLWWWWLLTLWLWLWLWLLWLWWWLTTWWWTTWLTWWLLLTTTWLWTWTT",
+    "LTTLWLTWLWLLLTWWLWWTTLLLLLWWTTWLLLWLLLTTTTLLWTWLTTLLTWWLWWTWWWLLLLWLWLWLLTWWWWLLWLLWLTLLLTLWLTLWLLWL"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "novice",
+   "bot": "markov2",
+   "seed": 5203,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.4532,
+    "tie": 0.2075,
+    "loss": 0.3392,
+    "decisive_win": 0.5719
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.4704,
+    "tie": 0.2011,
+    "loss": 0.3286,
+    "decisive_win": 0.5887
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.4133,
+    "tie": 0.2225,
+    "loss": 0.3642,
+    "decisive_win": 0.5316
+   },
+   "seconds": 0.8,
+   "sample": [
+    "LLLLWLWLLWLLWLLWLWLWWLWLTWLLLTTWWLLLWTLTLWWLWWLLWLTWTLTWWTLTWWTLTWWTLTWTLWWLWWWTLTWLWWWTLTLWWWWWTLTW",
+    "LWTWLLLTLLWLLLWWLTWTWWTTTLWLWWTTLLLWLLTLTTTLLLTLTWWTTLLLWWLLTWTWLWWWWTWLLTWWWWLWWWWWTTWLTLWWLWWWLWTW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "novice",
+   "bot": "biased",
+   "seed": 5204,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.451,
+    "tie": 0.2018,
+    "loss": 0.3473,
+    "decisive_win": 0.565
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.4607,
+    "tie": 0.2007,
+    "loss": 0.3386,
+    "decisive_win": 0.5764
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.4283,
+    "tie": 0.2042,
+    "loss": 0.3675,
+    "decisive_win": 0.5382
+   },
+   "seconds": 0.9,
+   "sample": [
+    "WLLWWLWWTWWLLWWWWWWWWWLWTWTLWWTTWLLWLWTWTTWWWWLLLWLWWWTWWWLTWTTWWTLWWTWWLWWLWLWWWTTTWWWWWTLLWWLWWWWW",
+    "LLLLTWTWTWLTWWWTTWWWLLWLLTLLWLLLTWWWLTLLWLWLTLLWLLLLLLTTWWLLLLWTWTTWTWLWTWLLLTWWLTLLWWLLWTWTWLLWWWWW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "novice",
+   "bot": "human",
+   "seed": 5205,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.3767,
+    "tie": 0.2023,
+    "loss": 0.421,
+    "decisive_win": 0.4723
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3779,
+    "tie": 0.2021,
+    "loss": 0.42,
+    "decisive_win": 0.4736
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3742,
+    "tie": 0.2025,
+    "loss": 0.4233,
+    "decisive_win": 0.4692
+   },
+   "seconds": 1.3,
+   "sample": [
+    "LTTLWLLWWLLLLLWTTWLTTWWLWTWTLTWTWTLLTWLWTLTWWLTWLWWWWLLTWLTTWWWLWLLWLLWLWLWLLLTLTWLTTTWTLWTLWLTLLWTW",
+    "TWTLLLLTLWLLWLTWWTLWTTLWLLWLTLWWWLLWLTTWLLTLLTLTWWWLLTWWLWWWLWTLWWLLLLLWLWWLLWWWLWLLWWTWLLWLLWLLTLTW"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "novice",
+   "bot": "random",
+   "seed": 5206,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.4035,
+    "tie": 0.1965,
+    "loss": 0.4,
+    "decisive_win": 0.5022
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.4089,
+    "tie": 0.1982,
+    "loss": 0.3929,
+    "decisive_win": 0.51
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.3908,
+    "tie": 0.1925,
+    "loss": 0.4167,
+    "decisive_win": 0.484
+   },
+   "seconds": 0.7,
+   "sample": [
+    "LWWWLLWLWWWLTWWLWLWWWLWTTLLLTLWLTTLLWTTWTLWWTTWTWTWLWLWLTLWLLLWLWWWWLWWLWTTLLLWWLLTTLLTLTLTWWLWWLWLW",
+    "WLWTLTWWLLTWTTLLLLWWTWTWLLTLLLWLLLTWWWLWWLWLWWWLLLWTLLLTLLWLLLTWWLWTTTLWLLTWTTLLTLLLTLWWTLTWLLWTLWLL"
+   ]
+  },
+  {
+   "k": 5,
+   "level": "novice",
+   "bot": "mirror",
+   "seed": 5207,
+   "matches": 40,
+   "rounds": 100,
+   "all": {
+    "rounds": 4000,
+    "win": 0.3942,
+    "tie": 0.1802,
+    "loss": 0.4255,
+    "decisive_win": 0.4809
+   },
+   "after30": {
+    "rounds": 2800,
+    "win": 0.3911,
+    "tie": 0.1739,
+    "loss": 0.435,
+    "decisive_win": 0.4734
+   },
+   "first30": {
+    "rounds": 1200,
+    "win": 0.4017,
+    "tie": 0.195,
+    "loss": 0.4033,
+    "decisive_win": 0.499
+   },
+   "seconds": 0.7,
+   "sample": [
+    "TTLWWLWLLLWWLLWWTLLWLTLTWTWTTWWLTWTWLWLLTLWTLLLWWLTLWWLWLLTWTLTWLLLWLTLLLTWLWLWLLLTLLWTWWWTWTLLLLTWT",
+    "WWWLTLLTWLLLWWLLLWLWLTLWTLTWLWWLWLWWLWWLTWWWTTTLLWLLLLTTLTWWWLTWLTTWLLLWTWLLWLTLLWWLWLLWWLLWLWTLWLWL"
+   ]
+  }
+ ],
+ "fairness": [
+  {
+   "k": 3,
+   "rounds": 20000,
+   "matches": 5,
+   "win": 0.3356,
+   "tie": 0.3342,
+   "loss": 0.3302,
+   "ai_moves": [
+    6785,
+    6717,
+    6498
+   ],
+   "chi2_moves": 6.75,
+   "p_moves": 0.0343,
+   "hindsight_edge": {
+    "0": 0.0204,
+    "1": 0.0422,
+    "2": 0.0621
+   },
+   "hindsight_edge_true_random": {
+    "0": 0.0234,
+    "1": 0.0199,
+    "2": 0.0384
+   },
+   "guard_triggers": 96
+  },
+  {
+   "k": 5,
+   "rounds": 20000,
+   "matches": 5,
+   "win": 0.4006,
+   "tie": 0.1983,
+   "loss": 0.4011,
+   "ai_moves": [
+    4026,
+    3974,
+    3944,
+    4005,
+    4051
+   ],
+   "chi2_moves": 1.78,
+   "p_moves": 0.7764,
+   "hindsight_edge": {
+    "0": 0.0277,
+    "1": 0.0479,
+    "2": 0.1017
+   },
+   "hindsight_edge_true_random": {
+    "0": 0.0226,
+    "1": 0.0403,
+    "2": 0.0803
+   },
+   "guard_triggers": 119
+  }
+ ],
+ "network": {
+  "parameters": {
+   "3": 747,
+   "5": 1085
+  },
+  "training": "по ходу матча, заранее не обучается"
+ },
+ "seconds": 216.4,
+ "processes": 2,
+ "python": "3.13.7"
+}

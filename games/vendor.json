@@ -9,5 +9,9 @@
   "map": {"game": "app", "core": "core", "nn": "nn", "paths": "paths"},
   "copy": ["models", "docs/preview_menu.png"],
   "keep": ["__init__.py", "_adapter.py"]
+ },
+ "rockpaper": {
+  "source": "RockPaperAi",
+  "layout": "contract"
  }
 }
