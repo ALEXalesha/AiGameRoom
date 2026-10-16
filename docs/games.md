@@ -72,5 +72,6 @@ python tools/contract_check.py --games --run           # все копии
 
 | id | Источник | Раскладка | Заметки |
 |---|---|---|---|
-| durak | DurakAiGame 1.0.0 | contract | проходит проверку без замечаний; свои pause/resume, без gc.freeze |
+| durak | DurakAiGame 1.0.2 | contract | проходит проверку без замечаний; свои pause/resume, без gc.freeze; брошенная партия считается при закрытии окна (shutdown) |
+| rockpaper | RockPaperAi 1.0.2 | contract | проходит проверку без замечаний; брошенный матч считается при закрытии окна (shutdown) |
 | tictactoe | TicTacToeAi 1.0.1 | legacy + переходник | только по-русски; перевод на контракт - волна 7 |

@@ -96,8 +96,9 @@ RU = {
     "stats_title": "Статистика", "your_matches": "Ваши матчи",
     "col_setup": "Знаков · уровень", "col_matches": "Матчей", "col_wins": "Победы", "col_draws": "Ничьи",
     "col_losses": "Поражения", "col_rounds": "Раунды: вы / ничьи / ИИ",
-    "stats_note": "В статистику идут матчи против ИИ, сыгранные до конца или завершённые кнопкой, "
-                  "без подглядывания в прогноз.",
+    "stats_note": "В статистику идут матчи против ИИ без подглядывания в прогноз. Сыгранный до конца "
+                  "или завершённый кнопкой - по счёту раундов. Брошенный после первого раунда (новый "
+                  "матч, меню, закрытие окна) - поражение при любом счёте; до первого раунда - не считается.",
     "passport": "Паспорт ИИ: доля выигранных ИИ раундов после 30-го (100 раундов в матче)",
     "no_passport": "Паспорт ещё не посчитан.",
     "b_repeat": "Повторяет", "b_cycle": "Цикл К→Н→Б", "b_wsls": "Выиграл - остался",
@@ -207,8 +208,9 @@ EN = {
     "stats_title": "Statistics", "your_matches": "Your matches",
     "col_setup": "Signs · level", "col_matches": "Matches", "col_wins": "Wins", "col_draws": "Draws",
     "col_losses": "Losses", "col_rounds": "Rounds: you / ties / AI",
-    "stats_note": "Counted: matches against the AI played to the end or ended with the button, without "
-                  "peeking at the prediction.",
+    "stats_note": "Counted: matches against the AI without peeking at the prediction. Played to the end "
+                  "or ended with the button - by the round score. Left after the first round (new match, "
+                  "menu, closing the window) - a loss whatever the score; before the first round - not counted.",
     "passport": "AI passport: share of rounds won by the AI after round 30 (100-round matches)",
     "no_passport": "The passport has not been computed yet.",
     "b_repeat": "Repeater", "b_cycle": "Cycle R→S→P", "b_wsls": "Win-stay lose-shift",

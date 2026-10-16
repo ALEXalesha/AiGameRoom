@@ -616,6 +616,7 @@ class GameWidget(QWidget):
 
     def show_page(self, name):
         if name != "play":
+            self._abandon()                  # из меню в этот матч не вернуться
             self.timer.stop()
         self.stack.setCurrentWidget(self.pages[name])
         if name == "stats":
@@ -667,6 +668,7 @@ class GameWidget(QWidget):
 
     def shutdown(self):
         """Окно закрывается: таймер показа стоп. Своих потоков у игры нет."""
+        self._abandon()
         self.timer.stop()
         return True
 
@@ -699,6 +701,7 @@ class GameWidget(QWidget):
     # --- матч ---
 
     def start_match(self, seed=None):
+        self._abandon()
         s = self.settings
         if seed is None:
             seed = self.rng.randrange(2 ** 31)
@@ -763,18 +766,40 @@ class GameWidget(QWidget):
         s.recorded = True
         outcome = s.outcome_for_human()
         if outcome and s.counts():
-            self.ctx.stats.record(s.stats_key(), outcome)
-            totals = self.round_totals()
-            sc = s.match.score()
-            old = totals.get(s.stats_key(), [0, 0, 0])
-            totals[s.stats_key()] = [old[0] + sc["wins"], old[1] + sc["ties"], old[2] + sc["losses"]]
-            save_json(self.ctx.file("rounds.json"), totals)
-            history = self.match_history()
-            history.append({"k": s.k, "level": s.level, "rounds": len(s.rounds), "wins": sc["wins"],
-                            "ties": sc["ties"], "losses": sc["losses"]})
-            save_json(self.ctx.file("matches.json"), history[-MAX_HISTORY:])
+            self._record(outcome)
         if outcome:
             self.ctx.sound.play(outcome)
+
+    def _abandon(self):
+        """Матч бросили (новый матч, меню, закрытие окна): после первого раунда он идёт в
+        статистику поражением, даже если вы вели. Без звука."""
+        s = self.session
+        if s is None or s.recorded:
+            return
+        outcome = s.abandon_outcome()
+        if outcome is None:
+            return
+        s.recorded = True
+        s.abandoned = True
+        if not s.peeked:              # показ и матч без раундов отсеяны в abandon_outcome
+            self._record(outcome)
+
+    def _record(self, outcome):
+        """Итог матча - в статистику, итоги раундов и журнал графиков."""
+        s = self.session
+        self.ctx.stats.record(s.stats_key(), outcome)
+        totals = self.round_totals()
+        sc = s.match.score()
+        old = totals.get(s.stats_key(), [0, 0, 0])
+        totals[s.stats_key()] = [old[0] + sc["wins"], old[1] + sc["ties"], old[2] + sc["losses"]]
+        save_json(self.ctx.file("rounds.json"), totals)
+        history = self.match_history()
+        m = {"k": s.k, "level": s.level, "rounds": len(s.rounds), "wins": sc["wins"],
+             "ties": sc["ties"], "losses": sc["losses"]}
+        if s.abandoned:
+            m["abandoned"] = True        # брошен: в статистике поражение при любом счёте
+        history.append(m)
+        save_json(self.ctx.file("matches.json"), history[-MAX_HISTORY:])
 
     # --- вид ---
 

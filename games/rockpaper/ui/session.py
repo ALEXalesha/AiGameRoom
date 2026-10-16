@@ -1,6 +1,9 @@
 """Матч в окне без Qt: человек (или бот в показе) против ИИ, подглядывание, итог.
 
 Режимы: 'play' - человек против ИИ, 'demo' - ИИ против бота с привычкой.
+
+Подсчёт (решение автора 16.10, как в Дураке): матч, брошенный после первого сыгранного
+раунда (новый матч, меню, закрытие окна), - поражение; до первого раунда - не считается.
 """
 from games.rockpaper.ai.bots import make_bot
 from games.rockpaper.ai.player import make_ai
@@ -23,6 +26,7 @@ class Session:
         self.bot = make_bot(bot, k, seed=seed + 1) if mode == "demo" else None
         self.peeked = False            # смотрел прогноз до хода - в статистику не идёт
         self.recorded = False
+        self.abandoned = False         # брошен до конца (итог записан в этот момент)
         self.commit = self.match.prepare(self.ai)
 
     @property
@@ -57,6 +61,13 @@ class Session:
         if self.mode != "play":
             return None
         return self.match.outcome_for_human()
+
+    def abandon_outcome(self):
+        """Итог, если матч бросить сейчас: None - не считается (показ, матч окончен или ещё
+        ни одного раунда), иначе поражение."""
+        if self.mode != "play" or self.over or not self.rounds:
+            return None
+        return "loss"
 
     def counts(self):
         return not self.peeked and self.mode == "play" and bool(self.rounds)
