@@ -35,7 +35,7 @@ Each game is developed in its own repository and follows one contract
 
 | Game | Version | Source |
 |---|---|---|
-| Durak | 1.0.0 | DurakAi |
+| Durak | 1.0.1 | DurakAi |
 | Tic-tac-toe | 1.0.1 | TicTacToeAi (Russian only for now) |
 | Rock paper scissors | 1.0.1 | RockPaperAi |
 
