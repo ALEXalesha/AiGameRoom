@@ -193,3 +193,10 @@ def test_flat_zero_line_stays_above_zero_and_integer_steps():
     assert step >= 1 and all(float(v).is_integer() for v in ticks)
     lo, hi, ticks, step = y_scale(-3, -3)
     assert lo < -3 < hi
+
+
+def test_numbers_in_legend_have_no_trailing_zero():
+    """Кадр SaperAi: «последняя 86.0 с» - лишний ноль."""
+    from aikit.charts import num
+    assert num(86.04, " с") == "86 с"
+    assert num(86.4) == "86.4" and num(3.25) == "3.25" and num(12500) == "12 500" and num(-4) == "-4"

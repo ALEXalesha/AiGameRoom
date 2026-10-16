@@ -176,7 +176,7 @@ def num(v, unit=""):
     elif abs(v - round(v)) < 1e-9 or abs(v) >= 100:
         text = f"{v:.0f}"
     elif abs(v) >= 10:
-        text = f"{v:.1f}"
+        text = f"{v:.1f}".rstrip("0").rstrip(".")      # 86.0 -> 86, 86.4 остаётся
     else:
         text = f"{v:.2f}".rstrip("0").rstrip(".")
     return text + unit
