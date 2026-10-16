@@ -15,6 +15,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 GT, W, R, H = "shell/gametab.py", "shell/window.py", "shell/registry.py", "shell/home.py"
 CC, VG, CT = "tools/contract_check.py", "tools/vendor_game.py", "shell/contract.py"
 TS, TG, TC, TV = "tests/test_shell.py", "tests/test_games.py", "tests/test_contract_check.py", "tests/test_vendor.py"
+CH, GL, TCH, TGL = "aikit/charts.py", "aikit/gamelog.py", "aikit/tests/test_charts.py", "aikit/tests/test_gamelog.py"
 
 # (имя, файл, было, стало, тесты)
 MUTANTS = [
@@ -69,6 +70,36 @@ MUTANTS = [
      "pass", f"{TV} -k unsafe"),
     ("крестики: resume не будит сеть", "games/tictactoe/_adapter.py", "            game.after_change()",
      "            pass", f"{TG} -k tictactoe_net"),
+    # графики статистики (aikit 0.2.0)
+    ("графики: линия из одной точки", CH, "        return len(self.points) >= 2", "        return len(self.points) >= 1",
+     f"{TCH} -k one_point"),
+    ("графики: обрезка не замечается", CH, "            self.clipped.append(text)", "            pass",
+     f"{TCH} -k clipping_is_noticed"),
+    ("графики: легенда не переносится", CH, "        one_line = not chunks or title_w + 16 + all_w <= head_w",
+     "        one_line = True", f"{TCH} -k 'keep_all_labels or second_line'"),
+    ("графики: поле для чисел узкое", CH, "widest * SLACK + 12", "widest * 0.5", f"{TCH} -k big_numbers"),
+    ("графики: тема не меняется", CH, "        self.theme = name\n        self.update()", "        self.update()",
+     f"{TCH} -k theme"),
+    ("графики: всегда две колонки", CH, "        return 2 if width >= 2 * self.min_col + GAP else 1", "        return 2",
+     f"{TCH} -k grid_two"),
+    ("графики: высота сетки не сообщается", CH, "        return y + max(c.height() for c, _, _ in last)", "        return 0",
+     f"{TCH} -k grid_two"),
+    ("журнал: уровни по алфавиту", GL, "    groups = [lv for lv in levels if sum(count[lv].values())]",
+     "    groups = sorted(lv for lv in levels if sum(count[lv].values()))", f"{TGL} -k by_level"),
+    ("журнал: окно не скользит", GL, "        if window is not None and k >= window:", "        if False:",
+     f"{TGL} -k rolling"),
+    ("журнал: ничья как поражение", GL, 'VALUE = {"win": 1.0, "draw": 0.5, "loss": 0.0}',
+     'VALUE = {"win": 1.0, "draw": 0.0, "loss": 0.0}', f"{TGL} -k rolling"),
+    ("журнал: мусорные поля пишутся", GL, "    return is_num(v) or isinstance(v, bool) or",
+     "    return True or", f"{TGL} -k dropped"),
+    ("журнал: номер берётся из записи", GL, '        g = {"n": self.next, **_tidy(game)}',
+     '        g = {**_tidy(game), "n": game.get("n", self.next)}', f"{TGL} -k continue"),
+    ("журнал: рекорд не копится", GL, "        if best is None or (v > best if better == \"max\" else v < best):",
+     "        if True:", f"{TGL} -k best_curve"),
+    ("журнал: серия не рвётся", GL, '        cur = cur + 1 if g["outcome"] == "win" else 0', "        cur = cur + 1",
+     f"{TGL} -k streaks"),
+    ("контракт: статистика без графиков можно", CC, "    elif not charts:", "    elif False:",
+     f"{TC} -k charts"),
 ]
 
 

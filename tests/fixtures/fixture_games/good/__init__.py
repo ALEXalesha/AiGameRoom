@@ -2,6 +2,8 @@
 from PySide6.QtCore import QTimer
 from PySide6.QtWidgets import QLabel, QVBoxLayout, QWidget
 
+from aikit.charts import GameCharts  # noqa: F401  графики статистики по контракту
+
 GAME_INFO = {
     "id": "good",
     "title": {"ru": "Хорошая", "en": "Good"},

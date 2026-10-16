@@ -10,6 +10,8 @@
   CI для Gitea (runs-on: windows) и GitHub;
 - код: без pygame, правила в game/core без Qt, PyTorch - только по решению Алексея,
   игра не создаёт своё главное окно, нет личного (почта, пути к папкам пользователя);
+- графики в статистике (правило автора 10.10): код игры берёт aikit.charts; свой модуль
+  графиков (chart.py / charts.py) - предупреждение, графиков нет совсем - ошибка;
 - вход: GAME_INFO и create_widget(ctx) - в отдельном процессе, у каждой игры свой `game`;
 - с --run: виджет создаётся без экрана, тема и язык меняются на лету, shutdown() за 2 с,
   потоки остановлены, файлы пишутся только в ctx.data_dir.
@@ -101,9 +103,24 @@ def _imports(tree):
             yield node.lineno, node.module
 
 
+def uses_aikit_charts(tree):
+    """import aikit.charts / from aikit.charts import ... / from aikit import charts."""
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import) and any(a.name.startswith("aikit.charts") for a in node.names):
+            return True
+        if isinstance(node, ast.ImportFrom) and node.level == 0 and node.module:
+            if node.module.startswith("aikit.charts"):
+                return True
+            if node.module == "aikit" and any(a.name == "charts" for a in node.names):
+                return True
+    return False
+
+
 def check_code(code_root):
     out = []
     core = os.path.join(code_root, "core")
+    shared = os.path.join(code_root, "aikit") + os.sep
+    charts, local_charts = False, []
     for path in walk_files(code_root, ".py"):
         rel = os.path.relpath(path, code_root).replace("\\", "/")
         try:
@@ -112,6 +129,10 @@ def check_code(code_root):
             out.append(Finding(ERROR, "code.syntax", f"{rel}: не разбирается ({e})"))
             continue
         in_core = os.path.abspath(path).startswith(os.path.abspath(core) + os.sep)
+        if not os.path.abspath(path).startswith(os.path.abspath(shared)):
+            charts = charts or uses_aikit_charts(tree)
+            if os.path.basename(path) in ("chart.py", "charts.py"):
+                local_charts.append(rel)
         for line, name in _imports(tree):
             top = name.split(".")[0]
             if top == "pygame":
@@ -126,6 +147,12 @@ def check_code(code_root):
                     or (isinstance(b, ast.Attribute) and b.attr == "QMainWindow") for b in node.bases)):
                 out.append(Finding(WARN, "code.mainwindow",
                                    f"{rel}:{node.lineno}: class {node.name}(QMainWindow) - окно даёт оболочка или run_standalone"))
+    if not charts and local_charts:
+        out.append(Finding(WARN, "stats.charts", f"графики своим модулем ({', '.join(local_charts)}), "
+                                                 "не aikit.charts - перенести на общий"))
+    elif not charts:
+        out.append(Finding(ERROR, "stats.charts", "в статистике нет графиков: экран статистики строит их "
+                                                  "из aikit.charts (доля побед, уровни, длина партии, рекорды)"))
     return out
 
 

@@ -45,6 +45,7 @@ def make_project(base, init=INFO + WIDGET, ci="runs-on: windows"):
         write(base, rel, "\n")
     write(base, "aikit/VERSION", open(os.path.join(ROOT, "aikit", "VERSION"), encoding="utf-8").read())
     write(base, "game/__init__.py", init)
+    write(base, "game/ui/stats.py", "from aikit.charts import GameCharts\n")
     write(base, ".gitea/workflows/ci.yml", f"jobs:\n  t:\n    {ci}\n")
     write(base, ".github/workflows/ci.yml", "jobs:\n  t:\n    runs-on: windows-latest\n")
     os.makedirs(os.path.join(base, "docs"), exist_ok=True)
@@ -168,3 +169,25 @@ def test_vendored_layout(folder):
     layout, findings = contract_check.check(os.path.join(ROOT, "tests", "fixtures", folder))
     assert layout == "vendored"
     assert bool(rules(findings, ERROR)) == folder.endswith("bad_info")
+
+
+def test_stats_without_charts_is_an_error_and_own_charts_a_warning(tmp_path):
+    base = make_project(tmp_path / "NoCharts")
+    write(base, "game/ui/stats.py", "\n")
+    _, findings = contract_check.check(base)
+    assert "stats.charts" in rules(findings, ERROR)
+    write(base, "game/ui/chart.py", "from PySide6.QtGui import QPainter\n")
+    _, findings = contract_check.check(base)
+    assert "stats.charts" in rules(findings, WARN) and "stats.charts" not in rules(findings, ERROR)
+    for line in ("from aikit import charts", "import aikit.charts", "from aikit.charts import LineChart"):
+        write(base, "game/ui/stats.py", line + "\n")
+        _, findings = contract_check.check(base)
+        assert "stats.charts" not in rules(findings), line
+
+
+def test_charts_inside_aikit_copy_do_not_count(tmp_path):
+    base = make_project(tmp_path / "OnlyKit")
+    write(base, "game/ui/stats.py", "\n")
+    write(base, "game/aikit/x.py", "from aikit.charts import GameCharts\n")
+    _, findings = contract_check.check(base)
+    assert "stats.charts" in rules(findings, ERROR)
