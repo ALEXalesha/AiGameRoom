@@ -16,14 +16,14 @@ from PySide6.QtWidgets import (QAbstractItemView, QCheckBox, QFrame, QGridLayout
                                QTableWidgetItem, QVBoxLayout, QWidget)
 
 from aikit import settings as st
-from aikit import theme
+from aikit import gamelog, theme
+from aikit.charts import BarChart, LineChart
 from aikit.storage import load_json, save_json
 from aikit.widgets import Combo, button, card, label, restyle, segmented
 from games.rockpaper.ai.bots import BOTS
 from games.rockpaper.ai.habits import analyse, caught_at
 from games.rockpaper.ai.player import LEVELS
 from games.rockpaper.core.rules import LOSS, NAMES, WIN
-from games.rockpaper.ui.charts import BarChart, LineChart
 from games.rockpaper.ui.i18n import translator
 from games.rockpaper.ui.session import Session
 from games.rockpaper.ui.views import ProbBars, ShareChart, SignButton
@@ -329,6 +329,11 @@ class PlayPage(QWidget):
 # --- статистика ---
 
 
+def match_outcome(m):
+    """Итог матча для серий: выиграно раундов больше, чем у ИИ, - победа; поровну - ничья."""
+    return "win" if m["wins"] > m["losses"] else ("loss" if m["wins"] < m["losses"] else "draw")
+
+
 class StatsPage(QWidget):
     def __init__(self, gw):
         super().__init__()
@@ -357,9 +362,14 @@ class StatsPage(QWidget):
         self.note = label("", "hint", wrap=True)
         outer.addWidget(self.note)
         self.chart_matches = LineChart()
+        self.chart_matches.second_key = "bad"           # вторая линия - доля ИИ
+        self.chart_streak = LineChart(percent=False)
+        self.chart_streak.color_key, self.chart_streak.second_key = "accent", "warn"
+        self.chart_streak.stepped = {0, 1}
+        self.chart_streak.integer = True
         self.chart_levels = BarChart()
         self.chart_ai = BarChart()
-        for c in (self.chart_matches, self.chart_levels, self.chart_ai):
+        for c in self.charts():
             outer.addWidget(c)
         self.pp_caption = label("", "section", wrap=True)
         outer.addWidget(self.pp_caption)
@@ -368,7 +378,7 @@ class StatsPage(QWidget):
         outer.addStretch(1)
 
     def charts(self):
-        return (self.chart_matches, self.chart_levels, self.chart_ai)
+        return (self.chart_matches, self.chart_streak, self.chart_levels, self.chart_ai)
 
     def refresh_charts(self):
         """Графики: доля выигранных раундов по матчам, по уровням и сила ИИ по паспорту."""
@@ -382,6 +392,11 @@ class StatsPage(QWidget):
         hist = g.match_history()
         cm.set_points([(i + 1, m["wins"] / m["rounds"]) for i, m in enumerate(hist)],
                       [(i + 1, m["losses"] / m["rounds"]) for i, m in enumerate(hist)])
+        cs = self.chart_streak
+        cs.title, cs.empty_text, cs.x_label = t("chart_streak"), t("chart_streak_empty"), t("chart_match_x")
+        cs.names = (t("streak_now"), t("streak_record"))
+        now, best = gamelog.streaks([{"n": i + 1, "outcome": match_outcome(m)} for i, m in enumerate(hist)])
+        cs.set_points(now, best)
         cl = self.chart_levels
         cl.title, cl.empty_text = t("chart_levels"), t("chart_levels_empty")
         groups, you, ai = [], [], []

@@ -2,8 +2,8 @@
  "id": "durak",
  "source": "DurakAiGame",
  "layout": "contract",
- "commit": "566ea8e",
+ "commit": "ea1c8d6",
  "uncommitted": false,
- "aikit": "0.1.0",
+ "aikit": "0.2.0",
  "date": "2026-10-17"
 }

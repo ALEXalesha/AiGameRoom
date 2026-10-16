@@ -56,6 +56,10 @@ RU = {
     "chart_matches_empty": "Сыграйте два матча против ИИ - здесь появится, как меняется доля ваших побед и побед ИИ.",
     "chart_match_x": "матч",
     "chart_levels": "Раунды по уровням",
+    "chart_streak": "Серии выигранных матчей и рекорд",
+    "chart_streak_empty": "Сыграйте два матча против ИИ - здесь появятся ваши серии выигранных матчей подряд "
+                          "и лучшая из них.",
+    "streak_now": "серия", "streak_record": "рекорд",
     "chart_levels_empty": "Здесь будут доли выигранных раундов на каждом уровне.",
     "chart_ai_strength": "Сила ИИ по паспорту: доля раундов, выигранных сильным ИИ после 30-го",
     "series_you": "вы", "series_ai": "ИИ", "series_k3": "3 знака", "series_k5": "5 знаков",
@@ -167,6 +171,10 @@ EN = {
     "chart_matches_empty": "Play two matches against the AI to see how your share of wins and the AI's change.",
     "chart_match_x": "match",
     "chart_levels": "Rounds by level",
+    "chart_streak": "Winning streaks of matches and record",
+    "chart_streak_empty": "Play two matches against the AI to see your streaks of matches won in a row and the best "
+                          "of them.",
+    "streak_now": "streak", "streak_record": "record",
     "chart_levels_empty": "Shares of rounds won at each level will be here.",
     "chart_ai_strength": "AI strength from the passport: rounds won by the strong AI after round 30",
     "series_you": "you", "series_ai": "AI", "series_k3": "3 signs", "series_k5": "5 signs",
