@@ -182,3 +182,14 @@ def test_texts_have_both_languages():
     from aikit.charts import TEXTS, texts
     assert set(TEXTS["ru"]) == set(TEXTS["en"])
     assert texts("de") == TEXTS["ru"]
+
+
+def test_flat_zero_line_stays_above_zero_and_integer_steps():
+    """Кадр RockPaperAi: серия побед из одних нулей рисовалась на шкале -0,50..0,50."""
+    from aikit.charts import y_scale
+    lo, hi, ticks, step = y_scale(0, 0)
+    assert lo == 0 and hi > 0 and min(ticks) >= 0
+    lo, hi, ticks, step = y_scale(0, 2, integer=True)
+    assert step >= 1 and all(float(v).is_integer() for v in ticks)
+    lo, hi, ticks, step = y_scale(-3, -3)
+    assert lo < -3 < hi

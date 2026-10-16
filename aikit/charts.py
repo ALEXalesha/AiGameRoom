@@ -111,17 +111,23 @@ def clean(points):
     return sorted(out)
 
 
-def y_scale(lo, hi, most=5):
+def y_scale(lo, hi, most=5, integer=False):
     """Круглая шкала по y: (низ, верх, деления, шаг) шагом 1, 2, 2.5, 5 на степень десяти.
-    Неотрицательные данные, у которых разброс больше их высоты, начинаются с нуля."""
+    Неотрицательные данные, у которых разброс больше их высоты, начинаются с нуля, и шкала
+    не уходит ниже нуля даже у ровной линии (серия побед из одних нулей - шкала 0..1, а не
+    -0,5..0,5). integer - шаг не меньше 1 (серии, ходы)."""
     if lo >= 0 and lo <= 0.3 * hi:
         lo = 0.0
     if hi - lo < 1e-9 * max(1.0, abs(hi), abs(lo)):
         pad = max(0.5, abs(hi) * 0.05)
-        lo, hi = lo - pad, hi + pad
+        lo, hi = (max(0.0, lo - pad) if lo >= 0 else lo - pad), hi + pad
     raw = (hi - lo) / (most - 1)
     mag = 10 ** math.floor(math.log10(raw))
     step = next(m * mag for m in (1, 2, 2.5, 5, 10) if m * mag >= raw * (1 - 1e-12))
+    if integer:
+        step = max(1.0, step if step >= 1 else 1.0)
+        if step == 2.5:
+            step = 2.0 if raw <= 2 else 5.0
     start = math.floor(lo / step + 1e-9) * step
     end = math.ceil(hi / step - 1e-9) * step
     if end - start < step * 0.5:
@@ -390,6 +396,7 @@ class LineChart(ChartCard):
         self.second_key = "muted"
         self.series = []            # [(подпись, ключ цвета, точки)]
         self.stepped = set()        # номера линий, что рисуются ступеньками (рекорд, серия)
+        self.integer = False        # целые числа (серии, ходы): шаг шкалы не дробный
 
     def set_points(self, points, second=None):
         """Главная линия и, если есть, вторая (подписи - names)."""
@@ -438,7 +445,7 @@ class LineChart(ChartCard):
             ticks = [0, 0.25, 0.5, 0.75, 1.0]
         else:
             ys = [y for _, _, pts in lines for _, y in pts]
-            y0, y1, ticks, step = y_scale(min(ys), max(ys))
+            y0, y1, ticks, step = y_scale(min(ys), max(ys), integer=self.integer)
         left = self.left_margin([tick_text(v, step, self.percent) for v in ticks])
         plot = QRectF(left, top, self.width() - left - 16, self.height() - top - BOTTOM)
         self.y_grid(p, plot, ticks, y0, y1, step, self.percent)
@@ -728,6 +735,7 @@ class GameCharts(ChartGrid):
         if self.length is not None:
             self.length.set_texts(t["length"], t["length_empty"], t["game_no"], t.get("length_y", t["moves"]))
             self.length.names = (t["last"],)
+            self.length.integer = all(float(v).is_integer() for _, v in gamelog.series(games, self.length_key))
             self.length.set_points(gamelog.series(games, self.length_key))
         r = self.records
         if self.score_key:
@@ -742,6 +750,7 @@ class GameCharts(ChartGrid):
             r.color_key, r.second_key = "accent", "warn"
             r.names = (t["streak_now"], t["record"])
             r.stepped = {0, 1}
+            r.integer = True
             now, top = gamelog.streaks(games)
             r.set_points(now, top)
         if self.learning is not None:
