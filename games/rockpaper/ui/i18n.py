@@ -23,6 +23,7 @@ RU = {
     "verified": "Проверка: ход ИИ «{a}» и ключ {nonce}… дают тот же отпечаток ✓",
     "not_verified": "Отпечаток НЕ совпал!",
     "first_round": "Первый раунд: ИИ ещё ничего о вас не знает и ходит случайно.",
+    "first_round_bot": "Первый раунд: ИИ ещё ничего о боте не знает и ходит случайно.",
     "win": "Матч ваш!", "loss": "Матч за ИИ", "draw": "Ничья по счёту",
     "score_line": "Вы {w} · ничьих {t} · ИИ {l}",
     "chart_title": "Доля выигранных раундов", "chart_you": "вы", "chart_ai": "ИИ", "chart_bot": "бот",
@@ -30,20 +31,27 @@ RU = {
     "thoughts": "Мысли ИИ",
     "thoughts_hint": "Что ИИ думал перед прошлым раундом: как, по его мнению, вы сыграете, и кто из "
                      "предсказателей его в этом убедил.",
+    "thoughts_hint_demo": "Что ИИ думал перед прошлым раундом: как, по его мнению, сыграет бот, и кто из "
+                          "предсказателей его в этом убедил.",
+    "thoughts_hint_now": "Что ИИ думает перед этим раундом: как, по его мнению, вы сыграете сейчас, и какой "
+                         "ход он уже выбрал.",
     "thoughts_now": "Что ИИ думает сейчас (до вашего хода)",
     "thoughts_round": "Перед раундом {n}",
     "thoughts_none": "Сыграйте раунд - здесь появится, что ИИ думал перед ним.",
+    "thoughts_none_demo": "После первого раунда здесь появится, что ИИ думал перед ним.",
     "peek": "Подсматривать ход ИИ (матч не идёт в статистику)",
     "peek_tip": "Без флажка до вашего хода виден только отпечаток хода ИИ, а «Мысли ИИ» рассказывают "
                 "о прошлом раунде. С флажком видно, какой ход ИИ уже выбрал и почему: обыграть его "
                 "становится легко, поэтому такой матч не идёт в статистику.",
     "predicted_now": "Прогноз ИИ на ваш ход сейчас",
     "expected_last": "Чего ИИ ждал от вас в раунде {n}",
+    "expected_last_bot": "Чего ИИ ждал от бота в раунде {n}",
     "forecast_hidden": "Прогноз на этот ход скрыт: до хода виден только отпечаток хода ИИ. "
                        "Ниже - чего ИИ ждал в прошлом раунде.",
     "ai_move_peek": "ИИ собирается сыграть: {move}",
     "not_counted": "Подсмотрено: этот матч не идёт в статистику",
     "you_played": "Вы сыграли: {move}",
+    "bot_played": "Бот сыграл: {move}",
     "chart_matches": "Доля выигранных раундов по матчам",
     "chart_matches_empty": "Сыграйте два матча против ИИ - здесь появится, как меняется доля ваших побед и побед ИИ.",
     "chart_match_x": "матч",
@@ -125,6 +133,7 @@ EN = {
     "verified": "Check: the AI's move \"{a}\" and key {nonce}… give the same fingerprint ✓",
     "not_verified": "Fingerprint does NOT match!",
     "first_round": "First round: the AI knows nothing about you yet and plays at random.",
+    "first_round_bot": "First round: the AI knows nothing about the bot yet and plays at random.",
     "win": "You win the match!", "loss": "The AI wins the match", "draw": "Draw on points",
     "score_line": "You {w} · ties {t} · AI {l}",
     "chart_title": "Share of rounds won", "chart_you": "you", "chart_ai": "AI", "chart_bot": "bot",
@@ -132,20 +141,27 @@ EN = {
     "thoughts": "AI thoughts",
     "thoughts_hint": "What the AI thought before the last round: how it expected you to play and which "
                      "predictor convinced it.",
+    "thoughts_hint_demo": "What the AI thought before the last round: how it expected the bot to play and "
+                          "which predictor convinced it.",
+    "thoughts_hint_now": "What the AI thinks before this round: how it expects you to play now and which "
+                         "move it has already chosen.",
     "thoughts_now": "What the AI thinks now (before your move)",
     "thoughts_round": "Before round {n}",
     "thoughts_none": "Play a round and you will see what the AI thought before it.",
+    "thoughts_none_demo": "After the first round you will see here what the AI thought before it.",
     "peek": "Peek at the AI's move (match not counted)",
     "peek_tip": "Off: before your move you see only the fingerprint of the AI's move, and AI thoughts "
                 "describe the previous round. On: you see the move the AI has already chosen and why; "
                 "it becomes easy to beat, so such a match is not counted in statistics.",
     "predicted_now": "The AI's forecast for your move now",
     "expected_last": "What the AI expected from you in round {n}",
+    "expected_last_bot": "What the AI expected from the bot in round {n}",
     "forecast_hidden": "The forecast for this move is hidden: before your move you see only the fingerprint "
                        "of the AI's move. Below is what the AI expected in the previous round.",
     "ai_move_peek": "The AI is about to play: {move}",
     "not_counted": "Peeked: this match is not counted in statistics",
     "you_played": "You played: {move}",
+    "bot_played": "The bot played: {move}",
     "chart_matches": "Share of rounds won, match by match",
     "chart_matches_empty": "Play two matches against the AI to see how your share of wins and the AI's change.",
     "chart_match_x": "match",

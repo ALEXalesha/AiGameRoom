@@ -317,7 +317,6 @@ class PlayPage(QWidget):
     def retranslate(self):
         t = self.gw.t
         self.thoughts_box.setText(t("thoughts"))
-        self.thoughts_hint.setText(t("thoughts_hint"))
         self.ranking_caption.setText(t("ranking"))
         self.peek_box.setText(t("peek"))
         self.peek_box.setToolTip(t("peek_tip"))
@@ -386,10 +385,13 @@ class StatsPage(QWidget):
         cl = self.chart_levels
         cl.title, cl.empty_text = t("chart_levels"), t("chart_levels_empty")
         groups, you, ai = [], [], []
-        for key, (w, ti, lo) in sorted(g.round_totals().items()):
-            k, lv = key.split("/")
-            n = w + ti + lo
-            if n and lv in LEVELS:
+        totals = g.round_totals()
+        for k in (3, 5):
+            for lv in LEVELS:
+                w, ti, lo = totals.get(f"{k}/{lv}", (0, 0, 0))
+                n = w + ti + lo
+                if not n:
+                    continue
                 groups.append(f"{k} · {t(lv)}")
                 you.append(w / n)
                 ai.append(lo / n)
@@ -792,7 +794,7 @@ class GameWidget(QWidget):
                            + (f" · {t('b_' + s.bot_key)}" if demo else ""))
         n = len(m.rounds)
         pp.round_label.setText(t("round_of", n=min(n + 1, m.length), total=m.length) if m.length
-                               else t("round_inf", n=n + 1))
+                               else t("round_inf", n=n if s.over else n + 1))
         sc = m.score()
         for lab, v in zip(pp.score_nums, (sc["wins"], sc["ties"], sc["losses"])):
             lab.setText(str(v))
@@ -835,7 +837,7 @@ class GameWidget(QWidget):
                 pp.sign_buttons[rv.human].mark = "human"
                 pp.sign_buttons[rv.ai].mark = "ai"
         else:
-            pp.last.setText(t("first_round"))
+            pp.last.setText(t("first_round_bot") if demo else t("first_round"))
             pp.verify.setText("")
         for b in pp.sign_buttons:
             b.update()
@@ -871,9 +873,11 @@ class GameWidget(QWidget):
         if self.peeking():
             return s.pending_thoughts(), t("thoughts_now"), t("predicted_now"), None
         rv = s.last_reveal()
+        demo = s.mode == "demo"
         if rv is None:
-            return None, t("thoughts_none"), "", None
-        return rv.thoughts, t("thoughts_round", n=rv.round_no + 1), t("expected_last", n=rv.round_no + 1), rv.human
+            return None, t("thoughts_none_demo") if demo else t("thoughts_none"), "", None
+        expected = t("expected_last_bot" if demo else "expected_last", n=rv.round_no + 1)
+        return rv.thoughts, t("thoughts_round", n=rv.round_no + 1), expected, rv.human
 
     def _refresh_thoughts(self):
         s = self.session
@@ -885,6 +889,9 @@ class GameWidget(QWidget):
             w.setChecked(v)
             w.blockSignals(False)
         pp.thoughts_hint.setVisible(show)
+        # подсказка - о том, что сейчас на панели: в показе о боте, с подглядыванием - этот раунд
+        pp.thoughts_hint.setText(t("thoughts_hint_demo") if s.mode == "demo" else
+                                 t("thoughts_hint_now") if self.peeking() else t("thoughts_hint"))
         pp.peek_box.setVisible(s.mode == "play")
         peek = self.peeking()
         pp.ai_move_peek.setVisible(peek)
@@ -900,7 +907,8 @@ class GameWidget(QWidget):
         if not show or th is None:
             return
         pp.bars_caption.setText(caption)
-        pp.th_actual.setText(t("you_played", move=self.sign_name(actual)) if actual is not None else "")
+        played = "bot_played" if s.mode == "demo" else "you_played"
+        pp.th_actual.setText(t(played, move=self.sign_name(actual)) if actual is not None else "")
         pp.th_actual.setVisible(actual is not None)
         dist = th.get("dist") or [1 / s.k] * s.k
         target = max(range(s.k), key=lambda i: dist[i]) if th.get("mode") == "predict" else None
