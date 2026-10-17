@@ -18,6 +18,8 @@
 #   chunk  личное в самом старом из 12 коммитов при кусках по 5 (PG_CHUNK) - падает;
 #   push   без DRY_RUN: чистая ветка и тег уходят в «GitHub»; pushbad - путь остался,
 #          в «GitHub» не ушло ничего.
+#   branch SRC_BRANCH=master (моды Teardown): github-main собирается из master и чистится;
+#          nobranch - ветки из SRC_BRANCH нет - отказ.
 # «Осталось после чистки» делается правилом TEXT_SED, которое вставляет строку обратно после
 # всех замен: так проверка испытывается отдельно от замены.
 set -uo pipefail
@@ -210,10 +212,28 @@ TEXT_SED=('s#MARKER#$(sed_rep "${SPELL[1]}")#g')"
   run 0 v9.9.9
   if [ "$RC" -ne 0 ] && gh_empty; then ok pushbad; else bad pushbad "ждали отказ и пустой GitHub, код $RC"; fi
 }
+case_branch() {
+  repo branch 'SRC_BRANCH=master'
+  commit README.md "start" "first"
+  commit notes.md "${SPELL[0]}" "notes"
+  git -C "$R" branch -q -m main master
+  OUT=$(cd "$R" && git reset -q --hard master && GIT_CONFIG_COUNT=1 GIT_CONFIG_KEY_0=publish.privateName \
+        GIT_CONFIG_VALUE_0="$FAKE_NAME" DRY_RUN=1 bash "$SD/publish_game.sh" . 2>&1); RC=$?
+  expect_pass branch
+  [ "$RC" -eq 0 ] || return 0
+  if git -C "$R" show github-main:notes.md > "$ROOT/branch.notes" 2>/dev/null \
+     && grep -F 'C:\Work\Projects\Web' "$ROOT/branch.notes" >/dev/null; then ok branch-clean
+  else bad branch-clean "github-main не из master или путь не заменён"; fi
+}
+case_nobranch() {
+  repo nobranch 'SRC_BRANCH=master'
+  commit README.md "start" "first"
+  run; expect_fail nobranch "нет ветки master"
+}
 
 IDX=("${!SPELL[@]}")
 all_cases() { # [имена групп]
-  local groups=("$@"); [ ${#groups[@]} -gt 0 ] || groups=(a1 a2f a2m ea em ef b bm bn df dm drop chunk push pushbad)
+  local groups=("$@"); [ ${#groups[@]} -gt 0 ] || groups=(a1 a2f a2m ea em ef b bm bn df dm drop chunk push pushbad branch nobranch)
   local g i
   for g in "${groups[@]}"; do
     case $g in

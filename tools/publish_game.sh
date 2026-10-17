@@ -23,7 +23,8 @@
 #   DROP_PATHS=(docs/spec.md)     пути, вырезаемые из всей публикуемой истории;
 #   TEXT_FORBID='слово|слово2'    ERE без учёта регистра: в файлах и сообщениях - пуш отменён;
 #   TEXT_SED=('s#a#b#g')          sed -E правила поверх личного (файлы TEXT_GREP и сообщения);
-#   TEXT_GREP='ERE'               какие файлы переписывать правилами TEXT_SED.
+#   TEXT_GREP='ERE'               какие файлы переписывать правилами TEXT_SED;
+#   SRC_BRANCH=master             ветка-источник, если не main (моды Teardown).
 #
 # Проверки - без конвейеров: `git log | grep -q` и `git grep | head` при pipefail получали
 # SIGPIPE (141) на длинной истории, и проверка молча проходила. Здесь каждая команда пишет
@@ -43,10 +44,11 @@ BR=github-main
 cd "$GAME"
 CONF=tools/publish.conf
 [ -f "$CONF" ] || { echo "нет $CONF" >&2; exit 1; }
-REPO=""; DROP_PATHS=(); TEXT_FORBID=""; TEXT_SED=(); TEXT_GREP=""
+REPO=""; DROP_PATHS=(); TEXT_FORBID=""; TEXT_SED=(); TEXT_GREP=""; SRC_BRANCH=main
 # shellcheck source=/dev/null
 . "$CONF"
 [ -n "$REPO" ] || { echo "в $CONF нет REPO=" >&2; exit 1; }
+git rev-parse -q --verify "refs/heads/$SRC_BRANCH" >/dev/null || { echo "нет ветки $SRC_BRANCH (SRC_BRANCH в $CONF)" >&2; exit 1; }
 
 PRIVATE_EMAIL="$(git config user.email || true)"
 LAN_GITEA="$(git remote get-url origin 2>/dev/null | sed -E 's#^[a-z]+://([^/]+)/.*#\1#' || true)"
@@ -134,7 +136,7 @@ cancel() {
   exit 1
 }
 
-git rev-list main > "$WORK/src-revs.txt"
+git rev-list "$SRC_BRANCH" > "$WORK/src-revs.txt"
 : > "$WORK/dirty.txt"
 if rev_grep "$WORK/src-revs.txt" -I -l -i -F -f "$GREPFILE"; then cat "$WORK/hit.txt" >> "$WORK/dirty.txt"; fi
 if rev_grep "$WORK/src-revs.txt" -I -l -i -E "$PATH_RE"; then cat "$WORK/hit.txt" >> "$WORK/dirty.txt"; fi # scrub:path
@@ -174,7 +176,7 @@ if [ ${#DROP_PATHS[@]} -gt 0 ]; then
 fi
 IDX=(); [ -n "$IDXF" ] && IDX=(--index-filter "$IDXF")
 
-git branch -f "$BR" main
+git branch -f "$BR" "$SRC_BRANCH"
 FILTER_BRANCH_SQUELCH_WARNING=1 git -c core.quotepath=off filter-branch -f -d "$WORK/rewrite" "${PRUNE[@]}" \
   --env-filter "$ENVF" --msg-filter "$CLEAN" "${IDX[@]}" "$BR" >/dev/null 2>&1 \
   || { echo "filter-branch не прошёл - пуш отменён (вывод не печатается: в нём может быть личное)" >&2; exit 1; }
@@ -232,7 +234,7 @@ for ref in $(git for-each-ref --format='%(refname)' refs/github-tags); do
 done
 git for-each-ref --format='%(refname)' refs/github-tags | xargs -r -n1 git update-ref -d
 
-echo "ветка $BR: $(wc -l < "$WORK/revs.txt") коммитов, $(git log -1 --format=%h "$BR"), main $(git rev-parse --short main) -> $REPO"
+echo "ветка $BR: $(wc -l < "$WORK/revs.txt") коммитов, $(git log -1 --format=%h "$BR"), $SRC_BRANCH $(git rev-parse --short "$SRC_BRANCH") -> $REPO"
 if [ "${DRY_RUN:-0}" = 1 ]; then
   echo "DRY_RUN=1: проверки пройдены, на GitHub ничего не отправлено"
   [ ${#MOVES[@]} -eq 0 ] || echo "теги переставились бы: ${MOVES[*]}"
