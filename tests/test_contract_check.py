@@ -191,3 +191,18 @@ def test_charts_inside_aikit_copy_do_not_count(tmp_path):
     write(base, "game/aikit/x.py", "from aikit.charts import GameCharts\n")
     _, findings = contract_check.check(base)
     assert "stats.charts" in rules(findings, ERROR)
+
+
+def test_pages_without_game_skin_are_a_warning(tmp_path):
+    """Правило автора 17.10: настройки и статистика в стиле игры (aikit.skin), не общим видом."""
+    base = make_project(tmp_path / "NoSkin")
+    _, findings = contract_check.check(base)
+    assert "pages.skin" in rules(findings, WARN) and "pages.skin" not in rules(findings, ERROR)
+    for line in ("from aikit import skin", "import aikit.skin", "from aikit.skin import Skin, SkinPage"):
+        write(base, "game/ui/pages.py", line + "\n")
+        _, findings = contract_check.check(base)
+        assert "pages.skin" not in rules(findings), line
+    write(base, "game/ui/pages.py", "\n")
+    write(base, "game/aikit/y.py", "from aikit.skin import Skin\n")
+    _, findings = contract_check.check(base)
+    assert "pages.skin" in rules(findings, WARN)

@@ -138,6 +138,37 @@ MUTANTS += [
      "    if isinstance(w, Title):\n        return False", f"{TMN} -k title_clipping"),
 ]
 
+SK, TSK = "aikit/skin.py", "aikit/tests/test_skin.py"
+MUTANTS += [
+    # 0.4.0: настройки и статистика в стиле игры (автор 17.10) - общие механизм и законы
+    ("скин: потолок высоты подписи не виден", SK,
+     "        if w.isVisibleTo(body) and w.wordWrap() and w.maximumHeight() < QWIDGETSIZE_MAX:",
+     "        if False:", f"{TSK} -k height_cap"),
+    ("скин: страница шире окна не видна", SK, "        if body.width() > vw + 1:", "        if False:",
+     f"{TSK} -k too_wide"),
+    ("скин: обрезка графиков не видна", SK, "        if c.clipped:\n", "        if False:\n",
+     f"{TSK} -k clipped_chart"),
+    ("скин: графики в цветах aikit", CH, "        if self.skin is not None:\n            return self.skin.palette(self.theme)",
+     "        if False:\n            return self.skin.palette(self.theme)", f"{TSK} -k take_card"),
+    ("скин: рамка графика общая", CH, "        if self.skin is not None:\n            self.skin.paint_card(",
+     "        if False:\n            self.skin.paint_card(", f"{TSK} -k take_card"),
+    ("скин: фон рисуется каждый кадр", SK, "        if self._cache is None or self._cache[0] != key:",
+     "        if True:", f"{TSK} -k painted_once"),
+    ("скин: стрелка списка не в цвет", SK, '            c.set_arrow_color(pal["text"])', "            pass",
+     f"{TSK} -k arrow"),
+    ("скин: плитки не переносятся", SK,
+     "        c = max(1, min(n, (width + self.GAP) // (self.min_tile + self.GAP)))", "        c = n",
+     f"{TSK} -k tiles"),
+    ("скин: таблица стилей не ставится", SK, "        self.setStyleSheet(self.skin.qss(theme))", "        pass",
+     f"{TSK} -k tiles"),
+    ("скин: заголовок без регистра игры", SK,
+     "        super().setText(text.upper() if self.skin.heading_upper else text)",
+     "        super().setText(text)", f"{TSK} -k heading"),
+    ("скин: флажок меряется жирным", MN, "        if w.isCheckable() and not isinstance(w, (QCheckBox, QRadioButton)):",
+     "        if w.isCheckable():", f"{TSK} -k checkbox_text"),
+    ("контракт: без стиля игры молча", CC, "    if not skin:", "    if False:", f"{TC} -k skin"),
+]
+
 
 if __name__ == "__main__":
     sys.path.insert(0, ROOT)

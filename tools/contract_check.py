@@ -116,11 +116,24 @@ def uses_aikit_charts(tree):
     return False
 
 
+def uses_aikit_skin(tree):
+    """import aikit.skin / from aikit.skin import ... / from aikit import skin."""
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import) and any(a.name.startswith("aikit.skin") for a in node.names):
+            return True
+        if isinstance(node, ast.ImportFrom) and node.level == 0 and node.module:
+            if node.module.startswith("aikit.skin"):
+                return True
+            if node.module == "aikit" and any(a.name == "skin" for a in node.names):
+                return True
+    return False
+
+
 def check_code(code_root):
     out = []
     core = os.path.join(code_root, "core")
     shared = os.path.join(code_root, "aikit") + os.sep
-    charts, local_charts = False, []
+    charts, local_charts, skin = False, [], False
     for path in walk_files(code_root, ".py"):
         rel = os.path.relpath(path, code_root).replace("\\", "/")
         try:
@@ -131,6 +144,7 @@ def check_code(code_root):
         in_core = os.path.abspath(path).startswith(os.path.abspath(core) + os.sep)
         if not os.path.abspath(path).startswith(os.path.abspath(shared)):
             charts = charts or uses_aikit_charts(tree)
+            skin = skin or uses_aikit_skin(tree)
             if os.path.basename(path) in ("chart.py", "charts.py"):
                 local_charts.append(rel)
         for line, name in _imports(tree):
@@ -153,6 +167,9 @@ def check_code(code_root):
     elif not charts:
         out.append(Finding(ERROR, "stats.charts", "в статистике нет графиков: экран статистики строит их "
                                                   "из aikit.charts (доля побед, уровни, длина партии, рекорды)"))
+    if not skin:
+        out.append(Finding(WARN, "pages.skin", "настройки и статистика общим видом aikit: свой стиль игры - "
+                                               "aikit.skin (Skin, SkinPage; правило автора 17.10)"))
     return out
 
 
