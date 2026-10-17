@@ -2,8 +2,8 @@
  "id": "rockpaper",
  "source": "RockPaperAi",
  "layout": "contract",
- "commit": "9e3e392",
+ "commit": "28f583a",
  "uncommitted": false,
- "aikit": "0.2.0",
+ "aikit": "0.2.2",
  "date": "2026-10-17"
 }
