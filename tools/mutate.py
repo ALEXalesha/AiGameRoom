@@ -130,6 +130,10 @@ MUTANTS += [
     ("меню: обрезка кнопки не видна", MN,
      "        return w.sizeHint().width() > w.width() or w.sizeHint().height() > w.height() + 1",
      "        return False", f"{TMN} -k catches"),
+    ("меню: жирная выбранная не проверяется", MN, "            if bold_width(w) > w.width() + 1:\n                return True",
+     "            if False:\n                return True", f"{TMN} -k bold"),
+    ("меню: поля кнопки числом +30", "aikit/widgets.py", "    return QFontMetrics(bold).horizontalAdvance(text) + max(30, frame)",
+     "    return QFontMetrics(bold).horizontalAdvance(text) + 30", f"{TMN} -k bold"),
     ("меню: обрезка заголовка не видна", MN, "    if isinstance(w, Title):\n        return w.clipped()",
      "    if isinstance(w, Title):\n        return False", f"{TMN} -k title_clipping"),
 ]
