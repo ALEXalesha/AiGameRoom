@@ -13,5 +13,9 @@
  "rockpaper": {
   "source": "RockPaperAi",
   "layout": "contract"
+ },
+ "snake": {
+  "source": "SnakeAIGame",
+  "layout": "contract"
  }
 }

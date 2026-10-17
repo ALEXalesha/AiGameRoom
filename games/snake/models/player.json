@@ -1,0 +1,1894 @@
+{
+ "seed": 0,
+ "samples": 120000,
+ "imitation_steps": 12000,
+ "rl_iters": 400,
+ "eval_rounds": 100,
+ "levels": {
+  "novice": {
+   "vs_bot": {
+    "win": 0.03,
+    "loss": 0.74,
+    "draw": 0.23
+   },
+   "vs_random": {
+    "win": 0.99,
+    "loss": 0.01,
+    "draw": 0.0
+   }
+  },
+  "medium": {
+   "vs_bot": {
+    "win": 0.12,
+    "loss": 0.4,
+    "draw": 0.48
+   },
+   "vs_random": {
+    "win": 1.0,
+    "loss": 0.0,
+    "draw": 0.0
+   }
+  },
+  "strong": {
+   "vs_bot": {
+    "win": 0.09,
+    "loss": 0.29,
+    "draw": 0.62
+   },
+   "vs_random": {
+    "win": 1.0,
+    "loss": 0.0,
+    "draw": 0.0
+   }
+  }
+ },
+ "imitation_curve": [
+  {
+   "step": 250,
+   "loss": 0.2693,
+   "accuracy": 0.9128
+  },
+  {
+   "step": 480,
+   "loss": 0.2853,
+   "accuracy": 0.9238
+  },
+  {
+   "step": 500,
+   "loss": 0.2185,
+   "accuracy": 0.9323
+  },
+  {
+   "step": 750,
+   "loss": 0.1542,
+   "accuracy": 0.9362
+  },
+  {
+   "step": 1000,
+   "loss": 0.152,
+   "accuracy": 0.9382
+  },
+  {
+   "step": 1250,
+   "loss": 0.181,
+   "accuracy": 0.9503
+  },
+  {
+   "step": 1500,
+   "loss": 0.1584,
+   "accuracy": 0.9423
+  },
+  {
+   "step": 1750,
+   "loss": 0.1814,
+   "accuracy": 0.9448
+  },
+  {
+   "step": 2000,
+   "loss": 0.1191,
+   "accuracy": 0.9503
+  },
+  {
+   "step": 2250,
+   "loss": 0.1269,
+   "accuracy": 0.9533
+  },
+  {
+   "step": 2500,
+   "loss": 0.1564,
+   "accuracy": 0.9557
+  },
+  {
+   "step": 2750,
+   "loss": 0.1179,
+   "accuracy": 0.9552
+  },
+  {
+   "step": 3000,
+   "loss": 0.1397,
+   "accuracy": 0.9552
+  },
+  {
+   "step": 3250,
+   "loss": 0.0981,
+   "accuracy": 0.9535
+  },
+  {
+   "step": 3500,
+   "loss": 0.1266,
+   "accuracy": 0.9562
+  },
+  {
+   "step": 3750,
+   "loss": 0.1063,
+   "accuracy": 0.958
+  },
+  {
+   "step": 4000,
+   "loss": 0.0884,
+   "accuracy": 0.9593
+  },
+  {
+   "step": 4250,
+   "loss": 0.1139,
+   "accuracy": 0.9597
+  },
+  {
+   "step": 4500,
+   "loss": 0.0843,
+   "accuracy": 0.9587
+  },
+  {
+   "step": 4750,
+   "loss": 0.0747,
+   "accuracy": 0.9627
+  },
+  {
+   "step": 5000,
+   "loss": 0.0471,
+   "accuracy": 0.9588
+  },
+  {
+   "step": 5250,
+   "loss": 0.0628,
+   "accuracy": 0.961
+  },
+  {
+   "step": 5500,
+   "loss": 0.0403,
+   "accuracy": 0.963
+  },
+  {
+   "step": 5750,
+   "loss": 0.0902,
+   "accuracy": 0.9608
+  },
+  {
+   "step": 6000,
+   "loss": 0.0766,
+   "accuracy": 0.9582
+  },
+  {
+   "step": 6250,
+   "loss": 0.0948,
+   "accuracy": 0.9642
+  },
+  {
+   "step": 6500,
+   "loss": 0.074,
+   "accuracy": 0.9665
+  },
+  {
+   "step": 6750,
+   "loss": 0.0436,
+   "accuracy": 0.9625
+  },
+  {
+   "step": 7000,
+   "loss": 0.0684,
+   "accuracy": 0.961
+  },
+  {
+   "step": 7250,
+   "loss": 0.0726,
+   "accuracy": 0.963
+  },
+  {
+   "step": 7500,
+   "loss": 0.0618,
+   "accuracy": 0.9655
+  },
+  {
+   "step": 7750,
+   "loss": 0.0708,
+   "accuracy": 0.9653
+  },
+  {
+   "step": 8000,
+   "loss": 0.0428,
+   "accuracy": 0.9697
+  },
+  {
+   "step": 8250,
+   "loss": 0.0361,
+   "accuracy": 0.966
+  },
+  {
+   "step": 8500,
+   "loss": 0.0273,
+   "accuracy": 0.9693
+  },
+  {
+   "step": 8750,
+   "loss": 0.0391,
+   "accuracy": 0.9663
+  },
+  {
+   "step": 9000,
+   "loss": 0.0285,
+   "accuracy": 0.963
+  },
+  {
+   "step": 9250,
+   "loss": 0.0301,
+   "accuracy": 0.9683
+  },
+  {
+   "step": 9500,
+   "loss": 0.0418,
+   "accuracy": 0.9705
+  },
+  {
+   "step": 9750,
+   "loss": 0.036,
+   "accuracy": 0.968
+  },
+  {
+   "step": 10000,
+   "loss": 0.1074,
+   "accuracy": 0.9652
+  },
+  {
+   "step": 10250,
+   "loss": 0.0402,
+   "accuracy": 0.9687
+  },
+  {
+   "step": 10500,
+   "loss": 0.0122,
+   "accuracy": 0.9693
+  },
+  {
+   "step": 10750,
+   "loss": 0.0342,
+   "accuracy": 0.966
+  },
+  {
+   "step": 11000,
+   "loss": 0.0303,
+   "accuracy": 0.9605
+  },
+  {
+   "step": 11250,
+   "loss": 0.0129,
+   "accuracy": 0.9683
+  },
+  {
+   "step": 11500,
+   "loss": 0.0465,
+   "accuracy": 0.9675
+  },
+  {
+   "step": 11750,
+   "loss": 0.0152,
+   "accuracy": 0.9688
+  },
+  {
+   "step": 12000,
+   "loss": 0.0285,
+   "accuracy": 0.9665
+  }
+ ],
+ "rl_curve": [
+  {
+   "episode": 8,
+   "reward": 5.938
+  },
+  {
+   "episode": 16,
+   "reward": 3.0
+  },
+  {
+   "episode": 24,
+   "reward": 4.688
+  },
+  {
+   "episode": 32,
+   "reward": 2.688
+  },
+  {
+   "episode": 40,
+   "reward": 4.5
+  },
+  {
+   "episode": 48,
+   "reward": 4.062
+  },
+  {
+   "episode": 56,
+   "reward": 3.562
+  },
+  {
+   "episode": 64,
+   "reward": 4.75
+  },
+  {
+   "episode": 72,
+   "reward": 3.625
+  },
+  {
+   "episode": 80,
+   "reward": 1.625
+  },
+  {
+   "episode": 88,
+   "reward": 4.812
+  },
+  {
+   "episode": 96,
+   "reward": 4.0
+  },
+  {
+   "episode": 104,
+   "reward": 4.062
+  },
+  {
+   "episode": 112,
+   "reward": 5.438
+  },
+  {
+   "episode": 120,
+   "reward": 5.75
+  },
+  {
+   "episode": 128,
+   "reward": 3.438
+  },
+  {
+   "episode": 136,
+   "reward": 4.0
+  },
+  {
+   "episode": 144,
+   "reward": 5.125
+  },
+  {
+   "episode": 152,
+   "reward": 5.5
+  },
+  {
+   "episode": 160,
+   "reward": 4.875
+  },
+  {
+   "episode": 168,
+   "reward": 4.875
+  },
+  {
+   "episode": 176,
+   "reward": 3.25
+  },
+  {
+   "episode": 184,
+   "reward": 4.125
+  },
+  {
+   "episode": 192,
+   "reward": 4.375
+  },
+  {
+   "episode": 200,
+   "reward": 4.5
+  },
+  {
+   "episode": 208,
+   "reward": 4.25
+  },
+  {
+   "episode": 216,
+   "reward": 5.188
+  },
+  {
+   "episode": 224,
+   "reward": 5.875
+  },
+  {
+   "episode": 232,
+   "reward": 5.25
+  },
+  {
+   "episode": 240,
+   "reward": 3.875
+  },
+  {
+   "episode": 248,
+   "reward": 3.75
+  },
+  {
+   "episode": 256,
+   "reward": 4.188
+  },
+  {
+   "episode": 264,
+   "reward": 4.438
+  },
+  {
+   "episode": 272,
+   "reward": 6.25
+  },
+  {
+   "episode": 280,
+   "reward": 4.75
+  },
+  {
+   "episode": 288,
+   "reward": 5.5
+  },
+  {
+   "episode": 296,
+   "reward": 5.938
+  },
+  {
+   "episode": 304,
+   "reward": 4.812
+  },
+  {
+   "episode": 312,
+   "reward": 4.062
+  },
+  {
+   "episode": 320,
+   "reward": 4.5
+  },
+  {
+   "episode": 328,
+   "reward": 3.938
+  },
+  {
+   "episode": 336,
+   "reward": 4.75
+  },
+  {
+   "episode": 344,
+   "reward": 5.0
+  },
+  {
+   "episode": 352,
+   "reward": 5.25
+  },
+  {
+   "episode": 360,
+   "reward": 4.75
+  },
+  {
+   "episode": 368,
+   "reward": 3.375
+  },
+  {
+   "episode": 376,
+   "reward": 2.75
+  },
+  {
+   "episode": 384,
+   "reward": 4.125
+  },
+  {
+   "episode": 392,
+   "reward": 4.5
+  },
+  {
+   "episode": 400,
+   "reward": 3.25
+  },
+  {
+   "episode": 8,
+   "reward": 4.938
+  },
+  {
+   "episode": 16,
+   "reward": 3.812
+  },
+  {
+   "episode": 24,
+   "reward": 3.75
+  },
+  {
+   "episode": 32,
+   "reward": 6.312
+  },
+  {
+   "episode": 40,
+   "reward": 6.438
+  },
+  {
+   "episode": 48,
+   "reward": 6.812
+  },
+  {
+   "episode": 56,
+   "reward": 3.5
+  },
+  {
+   "episode": 64,
+   "reward": 4.688
+  },
+  {
+   "episode": 72,
+   "reward": 3.75
+  },
+  {
+   "episode": 80,
+   "reward": 4.5
+  },
+  {
+   "episode": 88,
+   "reward": 4.0
+  },
+  {
+   "episode": 96,
+   "reward": 4.938
+  },
+  {
+   "episode": 104,
+   "reward": 5.312
+  },
+  {
+   "episode": 112,
+   "reward": 4.875
+  },
+  {
+   "episode": 120,
+   "reward": 3.0
+  },
+  {
+   "episode": 128,
+   "reward": 3.188
+  },
+  {
+   "episode": 136,
+   "reward": 5.188
+  },
+  {
+   "episode": 144,
+   "reward": 4.125
+  },
+  {
+   "episode": 152,
+   "reward": 2.625
+  },
+  {
+   "episode": 160,
+   "reward": 3.688
+  },
+  {
+   "episode": 168,
+   "reward": 5.438
+  },
+  {
+   "episode": 176,
+   "reward": 6.312
+  },
+  {
+   "episode": 184,
+   "reward": 2.938
+  },
+  {
+   "episode": 192,
+   "reward": 4.938
+  },
+  {
+   "episode": 200,
+   "reward": 5.5
+  },
+  {
+   "episode": 208,
+   "reward": 4.875
+  },
+  {
+   "episode": 216,
+   "reward": 4.312
+  },
+  {
+   "episode": 224,
+   "reward": 5.0
+  },
+  {
+   "episode": 232,
+   "reward": 6.438
+  },
+  {
+   "episode": 240,
+   "reward": 5.25
+  },
+  {
+   "episode": 248,
+   "reward": 3.875
+  },
+  {
+   "episode": 256,
+   "reward": 4.25
+  },
+  {
+   "episode": 264,
+   "reward": 4.188
+  },
+  {
+   "episode": 272,
+   "reward": 3.688
+  },
+  {
+   "episode": 280,
+   "reward": 5.312
+  },
+  {
+   "episode": 288,
+   "reward": 2.875
+  },
+  {
+   "episode": 296,
+   "reward": 4.438
+  },
+  {
+   "episode": 304,
+   "reward": 6.062
+  },
+  {
+   "episode": 312,
+   "reward": 5.375
+  },
+  {
+   "episode": 320,
+   "reward": 3.75
+  },
+  {
+   "episode": 328,
+   "reward": 3.25
+  },
+  {
+   "episode": 336,
+   "reward": 4.75
+  },
+  {
+   "episode": 344,
+   "reward": 5.562
+  },
+  {
+   "episode": 352,
+   "reward": 6.562
+  },
+  {
+   "episode": 360,
+   "reward": 6.062
+  },
+  {
+   "episode": 368,
+   "reward": 4.5
+  },
+  {
+   "episode": 376,
+   "reward": 4.625
+  },
+  {
+   "episode": 384,
+   "reward": 5.25
+  },
+  {
+   "episode": 392,
+   "reward": 4.562
+  },
+  {
+   "episode": 400,
+   "reward": 4.562
+  },
+  {
+   "episode": 8,
+   "reward": 5.188
+  },
+  {
+   "episode": 16,
+   "reward": 4.375
+  },
+  {
+   "episode": 24,
+   "reward": 4.5
+  },
+  {
+   "episode": 32,
+   "reward": 4.0
+  },
+  {
+   "episode": 40,
+   "reward": 6.438
+  },
+  {
+   "episode": 48,
+   "reward": 5.688
+  },
+  {
+   "episode": 56,
+   "reward": 6.125
+  },
+  {
+   "episode": 64,
+   "reward": 4.688
+  },
+  {
+   "episode": 72,
+   "reward": 5.375
+  },
+  {
+   "episode": 80,
+   "reward": 5.312
+  },
+  {
+   "episode": 88,
+   "reward": 6.125
+  },
+  {
+   "episode": 96,
+   "reward": 5.0
+  },
+  {
+   "episode": 104,
+   "reward": 5.5
+  },
+  {
+   "episode": 112,
+   "reward": 5.25
+  },
+  {
+   "episode": 120,
+   "reward": 4.0
+  },
+  {
+   "episode": 128,
+   "reward": 5.312
+  },
+  {
+   "episode": 136,
+   "reward": 3.938
+  },
+  {
+   "episode": 144,
+   "reward": 4.438
+  },
+  {
+   "episode": 152,
+   "reward": 4.125
+  },
+  {
+   "episode": 160,
+   "reward": 5.812
+  },
+  {
+   "episode": 168,
+   "reward": 6.375
+  },
+  {
+   "episode": 176,
+   "reward": 7.812
+  },
+  {
+   "episode": 184,
+   "reward": 4.875
+  },
+  {
+   "episode": 192,
+   "reward": 3.812
+  },
+  {
+   "episode": 200,
+   "reward": 4.938
+  },
+  {
+   "episode": 208,
+   "reward": 4.562
+  },
+  {
+   "episode": 216,
+   "reward": 5.25
+  },
+  {
+   "episode": 224,
+   "reward": 4.375
+  },
+  {
+   "episode": 232,
+   "reward": 5.812
+  },
+  {
+   "episode": 240,
+   "reward": 4.812
+  },
+  {
+   "episode": 248,
+   "reward": 6.125
+  },
+  {
+   "episode": 256,
+   "reward": 5.125
+  },
+  {
+   "episode": 264,
+   "reward": 4.875
+  },
+  {
+   "episode": 272,
+   "reward": 3.0
+  },
+  {
+   "episode": 280,
+   "reward": 6.25
+  },
+  {
+   "episode": 288,
+   "reward": 4.312
+  },
+  {
+   "episode": 296,
+   "reward": 3.312
+  },
+  {
+   "episode": 304,
+   "reward": 3.438
+  },
+  {
+   "episode": 312,
+   "reward": 5.438
+  },
+  {
+   "episode": 320,
+   "reward": 4.812
+  },
+  {
+   "episode": 328,
+   "reward": 5.375
+  },
+  {
+   "episode": 336,
+   "reward": 3.938
+  },
+  {
+   "episode": 344,
+   "reward": 4.375
+  },
+  {
+   "episode": 352,
+   "reward": 6.375
+  },
+  {
+   "episode": 360,
+   "reward": 5.438
+  },
+  {
+   "episode": 368,
+   "reward": 5.0
+  },
+  {
+   "episode": 376,
+   "reward": 4.375
+  },
+  {
+   "episode": 384,
+   "reward": 4.438
+  },
+  {
+   "episode": 392,
+   "reward": 4.375
+  },
+  {
+   "episode": 400,
+   "reward": 6.875
+  },
+  {
+   "episode": 8,
+   "reward": 5.312
+  },
+  {
+   "episode": 16,
+   "reward": 5.188
+  },
+  {
+   "episode": 24,
+   "reward": 4.438
+  },
+  {
+   "episode": 32,
+   "reward": 4.562
+  },
+  {
+   "episode": 40,
+   "reward": 6.312
+  },
+  {
+   "episode": 48,
+   "reward": 6.812
+  },
+  {
+   "episode": 56,
+   "reward": 4.875
+  },
+  {
+   "episode": 64,
+   "reward": 3.188
+  },
+  {
+   "episode": 72,
+   "reward": 5.75
+  },
+  {
+   "episode": 80,
+   "reward": 5.188
+  },
+  {
+   "episode": 88,
+   "reward": 5.5
+  },
+  {
+   "episode": 96,
+   "reward": 4.375
+  },
+  {
+   "episode": 104,
+   "reward": 4.625
+  },
+  {
+   "episode": 112,
+   "reward": 3.938
+  },
+  {
+   "episode": 120,
+   "reward": 5.25
+  },
+  {
+   "episode": 128,
+   "reward": 5.188
+  },
+  {
+   "episode": 136,
+   "reward": 4.938
+  },
+  {
+   "episode": 144,
+   "reward": 4.75
+  },
+  {
+   "episode": 152,
+   "reward": 6.438
+  },
+  {
+   "episode": 160,
+   "reward": 4.188
+  },
+  {
+   "episode": 168,
+   "reward": 4.875
+  },
+  {
+   "episode": 176,
+   "reward": 6.312
+  },
+  {
+   "episode": 184,
+   "reward": 5.312
+  },
+  {
+   "episode": 192,
+   "reward": 7.188
+  },
+  {
+   "episode": 200,
+   "reward": 4.0
+  },
+  {
+   "episode": 208,
+   "reward": 4.125
+  },
+  {
+   "episode": 216,
+   "reward": 4.125
+  },
+  {
+   "episode": 224,
+   "reward": 4.688
+  },
+  {
+   "episode": 232,
+   "reward": 5.75
+  },
+  {
+   "episode": 240,
+   "reward": 5.375
+  },
+  {
+   "episode": 248,
+   "reward": 4.0
+  },
+  {
+   "episode": 256,
+   "reward": 6.312
+  },
+  {
+   "episode": 264,
+   "reward": 3.812
+  },
+  {
+   "episode": 272,
+   "reward": 5.188
+  },
+  {
+   "episode": 280,
+   "reward": 5.25
+  },
+  {
+   "episode": 288,
+   "reward": 5.625
+  },
+  {
+   "episode": 296,
+   "reward": 7.562
+  },
+  {
+   "episode": 304,
+   "reward": 4.125
+  },
+  {
+   "episode": 312,
+   "reward": 4.375
+  },
+  {
+   "episode": 320,
+   "reward": 5.188
+  },
+  {
+   "episode": 328,
+   "reward": 5.188
+  },
+  {
+   "episode": 336,
+   "reward": 4.938
+  },
+  {
+   "episode": 344,
+   "reward": 3.25
+  },
+  {
+   "episode": 352,
+   "reward": 6.312
+  },
+  {
+   "episode": 360,
+   "reward": 5.562
+  },
+  {
+   "episode": 368,
+   "reward": 4.938
+  },
+  {
+   "episode": 376,
+   "reward": 5.688
+  },
+  {
+   "episode": 384,
+   "reward": 5.125
+  },
+  {
+   "episode": 392,
+   "reward": 4.438
+  },
+  {
+   "episode": 400,
+   "reward": 5.812
+  },
+  {
+   "episode": 8,
+   "reward": 4.5
+  },
+  {
+   "episode": 16,
+   "reward": 6.062
+  },
+  {
+   "episode": 24,
+   "reward": 6.062
+  },
+  {
+   "episode": 32,
+   "reward": 5.75
+  },
+  {
+   "episode": 40,
+   "reward": 5.625
+  },
+  {
+   "episode": 48,
+   "reward": 5.5
+  },
+  {
+   "episode": 56,
+   "reward": 7.062
+  },
+  {
+   "episode": 64,
+   "reward": 4.25
+  },
+  {
+   "episode": 72,
+   "reward": 5.25
+  },
+  {
+   "episode": 80,
+   "reward": 4.625
+  },
+  {
+   "episode": 88,
+   "reward": 5.0
+  },
+  {
+   "episode": 96,
+   "reward": 5.188
+  },
+  {
+   "episode": 104,
+   "reward": 3.438
+  },
+  {
+   "episode": 112,
+   "reward": 5.625
+  },
+  {
+   "episode": 120,
+   "reward": 4.938
+  },
+  {
+   "episode": 128,
+   "reward": 4.438
+  },
+  {
+   "episode": 136,
+   "reward": 6.75
+  },
+  {
+   "episode": 144,
+   "reward": 5.75
+  },
+  {
+   "episode": 152,
+   "reward": 5.188
+  },
+  {
+   "episode": 160,
+   "reward": 6.0
+  },
+  {
+   "episode": 168,
+   "reward": 6.25
+  },
+  {
+   "episode": 176,
+   "reward": 6.25
+  },
+  {
+   "episode": 184,
+   "reward": 4.688
+  },
+  {
+   "episode": 192,
+   "reward": 5.062
+  },
+  {
+   "episode": 200,
+   "reward": 6.625
+  },
+  {
+   "episode": 208,
+   "reward": 4.812
+  },
+  {
+   "episode": 216,
+   "reward": 6.0
+  },
+  {
+   "episode": 224,
+   "reward": 5.75
+  },
+  {
+   "episode": 232,
+   "reward": 5.188
+  },
+  {
+   "episode": 240,
+   "reward": 4.938
+  },
+  {
+   "episode": 248,
+   "reward": 5.0
+  },
+  {
+   "episode": 256,
+   "reward": 5.875
+  },
+  {
+   "episode": 264,
+   "reward": 3.562
+  },
+  {
+   "episode": 272,
+   "reward": 3.062
+  },
+  {
+   "episode": 280,
+   "reward": 6.938
+  },
+  {
+   "episode": 288,
+   "reward": 5.0
+  },
+  {
+   "episode": 296,
+   "reward": 6.25
+  },
+  {
+   "episode": 304,
+   "reward": 3.875
+  },
+  {
+   "episode": 312,
+   "reward": 5.062
+  },
+  {
+   "episode": 320,
+   "reward": 5.188
+  },
+  {
+   "episode": 328,
+   "reward": 5.125
+  },
+  {
+   "episode": 336,
+   "reward": 5.5
+  },
+  {
+   "episode": 344,
+   "reward": 5.688
+  },
+  {
+   "episode": 352,
+   "reward": 4.125
+  },
+  {
+   "episode": 360,
+   "reward": 5.312
+  },
+  {
+   "episode": 368,
+   "reward": 4.625
+  },
+  {
+   "episode": 376,
+   "reward": 4.0
+  },
+  {
+   "episode": 384,
+   "reward": 5.75
+  },
+  {
+   "episode": 392,
+   "reward": 3.438
+  },
+  {
+   "episode": 400,
+   "reward": 3.938
+  },
+  {
+   "episode": 8,
+   "reward": 5.875
+  },
+  {
+   "episode": 16,
+   "reward": 3.812
+  },
+  {
+   "episode": 24,
+   "reward": 4.75
+  },
+  {
+   "episode": 32,
+   "reward": 5.375
+  },
+  {
+   "episode": 40,
+   "reward": 4.312
+  },
+  {
+   "episode": 48,
+   "reward": 4.75
+  },
+  {
+   "episode": 56,
+   "reward": 6.188
+  },
+  {
+   "episode": 64,
+   "reward": 5.438
+  },
+  {
+   "episode": 72,
+   "reward": 6.438
+  },
+  {
+   "episode": 80,
+   "reward": 5.688
+  },
+  {
+   "episode": 88,
+   "reward": 4.75
+  },
+  {
+   "episode": 96,
+   "reward": 5.438
+  },
+  {
+   "episode": 104,
+   "reward": 4.875
+  },
+  {
+   "episode": 112,
+   "reward": 4.562
+  },
+  {
+   "episode": 120,
+   "reward": 5.75
+  },
+  {
+   "episode": 128,
+   "reward": 5.375
+  },
+  {
+   "episode": 136,
+   "reward": 4.625
+  },
+  {
+   "episode": 144,
+   "reward": 4.75
+  },
+  {
+   "episode": 152,
+   "reward": 6.062
+  },
+  {
+   "episode": 160,
+   "reward": 3.812
+  },
+  {
+   "episode": 168,
+   "reward": 5.375
+  },
+  {
+   "episode": 176,
+   "reward": 4.188
+  },
+  {
+   "episode": 184,
+   "reward": 5.938
+  },
+  {
+   "episode": 192,
+   "reward": 4.312
+  },
+  {
+   "episode": 200,
+   "reward": 4.812
+  },
+  {
+   "episode": 208,
+   "reward": 5.625
+  },
+  {
+   "episode": 216,
+   "reward": 6.625
+  },
+  {
+   "episode": 224,
+   "reward": 4.438
+  },
+  {
+   "episode": 232,
+   "reward": 5.938
+  },
+  {
+   "episode": 240,
+   "reward": 4.125
+  },
+  {
+   "episode": 248,
+   "reward": 5.938
+  },
+  {
+   "episode": 256,
+   "reward": 4.125
+  },
+  {
+   "episode": 264,
+   "reward": 4.062
+  },
+  {
+   "episode": 272,
+   "reward": 5.375
+  },
+  {
+   "episode": 280,
+   "reward": 5.562
+  },
+  {
+   "episode": 288,
+   "reward": 3.562
+  },
+  {
+   "episode": 296,
+   "reward": 6.188
+  },
+  {
+   "episode": 304,
+   "reward": 7.438
+  },
+  {
+   "episode": 312,
+   "reward": 5.938
+  },
+  {
+   "episode": 320,
+   "reward": 3.938
+  },
+  {
+   "episode": 328,
+   "reward": 4.75
+  },
+  {
+   "episode": 336,
+   "reward": 4.75
+  },
+  {
+   "episode": 344,
+   "reward": 4.812
+  },
+  {
+   "episode": 352,
+   "reward": 5.062
+  },
+  {
+   "episode": 360,
+   "reward": 5.438
+  },
+  {
+   "episode": 368,
+   "reward": 4.438
+  },
+  {
+   "episode": 376,
+   "reward": 3.375
+  },
+  {
+   "episode": 384,
+   "reward": 4.125
+  },
+  {
+   "episode": 392,
+   "reward": 5.25
+  },
+  {
+   "episode": 400,
+   "reward": 6.375
+  },
+  {
+   "episode": 8,
+   "reward": 6.375
+  },
+  {
+   "episode": 16,
+   "reward": 5.062
+  },
+  {
+   "episode": 24,
+   "reward": 4.625
+  },
+  {
+   "episode": 32,
+   "reward": 7.188
+  },
+  {
+   "episode": 40,
+   "reward": 7.125
+  },
+  {
+   "episode": 48,
+   "reward": 6.5
+  },
+  {
+   "episode": 56,
+   "reward": 3.75
+  },
+  {
+   "episode": 64,
+   "reward": 4.062
+  },
+  {
+   "episode": 72,
+   "reward": 6.562
+  },
+  {
+   "episode": 80,
+   "reward": 4.062
+  },
+  {
+   "episode": 88,
+   "reward": 6.875
+  },
+  {
+   "episode": 96,
+   "reward": 4.0
+  },
+  {
+   "episode": 104,
+   "reward": 6.438
+  },
+  {
+   "episode": 112,
+   "reward": 4.438
+  },
+  {
+   "episode": 120,
+   "reward": 5.188
+  },
+  {
+   "episode": 128,
+   "reward": 6.812
+  },
+  {
+   "episode": 136,
+   "reward": 5.312
+  },
+  {
+   "episode": 144,
+   "reward": 4.812
+  },
+  {
+   "episode": 152,
+   "reward": 5.125
+  },
+  {
+   "episode": 160,
+   "reward": 6.0
+  },
+  {
+   "episode": 168,
+   "reward": 4.5
+  },
+  {
+   "episode": 176,
+   "reward": 6.312
+  },
+  {
+   "episode": 184,
+   "reward": 4.0
+  },
+  {
+   "episode": 192,
+   "reward": 4.688
+  },
+  {
+   "episode": 200,
+   "reward": 6.188
+  },
+  {
+   "episode": 208,
+   "reward": 6.5
+  },
+  {
+   "episode": 216,
+   "reward": 5.938
+  },
+  {
+   "episode": 224,
+   "reward": 4.812
+  },
+  {
+   "episode": 232,
+   "reward": 6.25
+  },
+  {
+   "episode": 240,
+   "reward": 5.5
+  },
+  {
+   "episode": 248,
+   "reward": 3.188
+  },
+  {
+   "episode": 256,
+   "reward": 6.312
+  },
+  {
+   "episode": 264,
+   "reward": 6.0
+  },
+  {
+   "episode": 272,
+   "reward": 5.375
+  },
+  {
+   "episode": 280,
+   "reward": 5.125
+  },
+  {
+   "episode": 288,
+   "reward": 4.938
+  },
+  {
+   "episode": 296,
+   "reward": 7.0
+  },
+  {
+   "episode": 304,
+   "reward": 5.875
+  },
+  {
+   "episode": 312,
+   "reward": 4.938
+  },
+  {
+   "episode": 320,
+   "reward": 6.0
+  },
+  {
+   "episode": 328,
+   "reward": 7.0
+  },
+  {
+   "episode": 336,
+   "reward": 5.375
+  },
+  {
+   "episode": 344,
+   "reward": 4.0
+  },
+  {
+   "episode": 352,
+   "reward": 5.062
+  },
+  {
+   "episode": 360,
+   "reward": 3.0
+  },
+  {
+   "episode": 368,
+   "reward": 5.75
+  },
+  {
+   "episode": 376,
+   "reward": 6.812
+  },
+  {
+   "episode": 384,
+   "reward": 6.0
+  },
+  {
+   "episode": 392,
+   "reward": 5.0
+  },
+  {
+   "episode": 400,
+   "reward": 3.75
+  },
+  {
+   "episode": 8,
+   "reward": 4.25
+  },
+  {
+   "episode": 16,
+   "reward": 4.562
+  },
+  {
+   "episode": 24,
+   "reward": 4.875
+  },
+  {
+   "episode": 32,
+   "reward": 4.938
+  },
+  {
+   "episode": 40,
+   "reward": 5.062
+  },
+  {
+   "episode": 48,
+   "reward": 5.312
+  },
+  {
+   "episode": 56,
+   "reward": 5.875
+  },
+  {
+   "episode": 64,
+   "reward": 4.625
+  },
+  {
+   "episode": 72,
+   "reward": 6.062
+  },
+  {
+   "episode": 80,
+   "reward": 7.062
+  },
+  {
+   "episode": 88,
+   "reward": 3.375
+  },
+  {
+   "episode": 96,
+   "reward": 6.25
+  },
+  {
+   "episode": 104,
+   "reward": 7.0
+  },
+  {
+   "episode": 112,
+   "reward": 5.875
+  },
+  {
+   "episode": 120,
+   "reward": 5.75
+  },
+  {
+   "episode": 128,
+   "reward": 5.875
+  },
+  {
+   "episode": 136,
+   "reward": 5.188
+  },
+  {
+   "episode": 144,
+   "reward": 5.312
+  },
+  {
+   "episode": 152,
+   "reward": 5.188
+  },
+  {
+   "episode": 160,
+   "reward": 5.812
+  },
+  {
+   "episode": 168,
+   "reward": 4.5
+  },
+  {
+   "episode": 176,
+   "reward": 5.938
+  },
+  {
+   "episode": 184,
+   "reward": 5.625
+  },
+  {
+   "episode": 192,
+   "reward": 5.75
+  },
+  {
+   "episode": 200,
+   "reward": 5.062
+  },
+  {
+   "episode": 208,
+   "reward": 4.75
+  },
+  {
+   "episode": 216,
+   "reward": 6.562
+  },
+  {
+   "episode": 224,
+   "reward": 4.062
+  },
+  {
+   "episode": 232,
+   "reward": 5.062
+  },
+  {
+   "episode": 240,
+   "reward": 6.312
+  },
+  {
+   "episode": 248,
+   "reward": 4.312
+  },
+  {
+   "episode": 256,
+   "reward": 6.375
+  },
+  {
+   "episode": 264,
+   "reward": 5.562
+  },
+  {
+   "episode": 272,
+   "reward": 5.312
+  },
+  {
+   "episode": 280,
+   "reward": 5.062
+  },
+  {
+   "episode": 288,
+   "reward": 4.438
+  },
+  {
+   "episode": 296,
+   "reward": 3.875
+  },
+  {
+   "episode": 304,
+   "reward": 4.625
+  },
+  {
+   "episode": 312,
+   "reward": 5.438
+  },
+  {
+   "episode": 320,
+   "reward": 4.312
+  },
+  {
+   "episode": 328,
+   "reward": 3.688
+  },
+  {
+   "episode": 336,
+   "reward": 6.688
+  },
+  {
+   "episode": 344,
+   "reward": 5.938
+  },
+  {
+   "episode": 352,
+   "reward": 3.938
+  },
+  {
+   "episode": 360,
+   "reward": 4.875
+  },
+  {
+   "episode": 368,
+   "reward": 4.562
+  },
+  {
+   "episode": 376,
+   "reward": 5.562
+  },
+  {
+   "episode": 384,
+   "reward": 7.5
+  },
+  {
+   "episode": 392,
+   "reward": 5.0
+  },
+  {
+   "episode": 400,
+   "reward": 3.75
+  }
+ ]
+}

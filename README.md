@@ -35,9 +35,10 @@ Each game is developed in its own repository and follows one contract
 
 | Game | Version | Source |
 |---|---|---|
-| Durak | 1.0.2 | DurakAi |
+| Durak | 1.0.5 | DurakAi |
 | Tic-tac-toe | 1.0.1 | TicTacToeAi (Russian only for now) |
-| Rock paper scissors | 1.0.2 | RockPaperAi |
+| Rock paper scissors | 1.0.4 | RockPaperAi |
+| Neuro Snake | 2.0.0 | SnakeAi |
 
 More games join as they reach 1.0: 2048, falling blocks, checkers and chess, battleship,
 minesweeper and others.

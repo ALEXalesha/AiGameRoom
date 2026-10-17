@@ -72,6 +72,7 @@ python tools/contract_check.py --games --run           # все копии
 
 | id | Источник | Раскладка | Заметки |
 |---|---|---|---|
-| durak | DurakAiGame 1.0.2 | contract | проходит проверку без замечаний; свои pause/resume, без gc.freeze; брошенная партия считается при закрытии окна (shutdown) |
-| rockpaper | RockPaperAi 1.0.2 | contract | проходит проверку без замечаний; брошенный матч считается при закрытии окна (shutdown) |
+| durak | DurakAiGame 1.0.5 | contract | проходит проверку без замечаний; свои pause/resume, без gc.freeze; брошенная партия считается при закрытии окна (shutdown) |
+| rockpaper | RockPaperAi 1.0.4 | contract | проходит проверку без замечаний; брошенный матч считается при закрытии окна (shutdown) |
+| snake | SnakeAIGame 2.0.0 | contract | ошибок нет, 1 предупреждение: графики своим модулем ui/chart.py, не aikit.charts; окно и клетки рисуют свои сети (game/design) |
 | tictactoe | TicTacToeAi 1.0.1 | legacy + переходник | только по-русски; перевод на контракт - волна 7 |

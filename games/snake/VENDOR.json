@@ -1,0 +1,9 @@
+{
+ "id": "snake",
+ "source": "SnakeAIGame",
+ "layout": "contract",
+ "commit": "18bab15",
+ "uncommitted": false,
+ "aikit": "0.1.0",
+ "date": "2026-10-17"
+}
