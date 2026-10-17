@@ -102,6 +102,14 @@ MUTANTS = [
      "        if True:", f"{TGL} -k best_curve"),
     ("журнал: серия не рвётся", GL, '        cur = cur + 1 if g["outcome"] == "win" else 0', "        cur = cur + 1",
      f"{TGL} -k streaks"),
+    # 0.2.2 (проверка графиков 17.10): числа над столбиками на легенде, тормоза длинного журнала
+    ("графики: числа над столбиками без запаса", CH, "VALUE_ROOM = 16 ", "VALUE_ROOM = 0 ", f"{TCH} -k bar_values"),
+    ("графики: налезания не замечаются", CH, "                if boxes[i][1].intersects(boxes[j][1]):",
+     "                if False:", f"{TCH} -k overlaps_are"),
+    ("графики: густая линия зигзагом", CH, "    if len(points) <= max(1, columns) or x1 <= x0:\n        return None",
+     "    if True:\n        return None", f"{TCH} -k 'envelope or long_journal'"),
+    ("графики: полоса без пиков", CH, "            b[1], b[2], b[3] = min(b[1], y), max(b[2], y), x",
+     "            b[1], b[2], b[3] = b[1], b[2], x", f"{TCH} -k envelope"),
     ("контракт: статистика без графиков можно", CC, "    elif not charts:", "    elif False:",
      f"{TC} -k charts"),
 ]
