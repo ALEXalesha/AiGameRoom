@@ -113,6 +113,26 @@ MUTANTS = [
     ("контракт: статистика без графиков можно", CC, "    elif not charts:", "    elif False:",
      f"{TC} -k charts"),
 ]
+MN, TMN = "aikit/menu.py", "aikit/tests/test_menu.py"
+MUTANTS += [
+    # 0.3.0: стартовое меню у каждой игры своё - общие только живой фон и законы раскладки
+    ("меню: фон тикает скрытым", MN, "        want = self.isVisible() and not self.paused and not self.frozen",
+     "        want = not self.paused and not self.frozen", f"{TMN} -k visible"),
+    ("меню: пауза не останавливает", MN, "    def pause(self):\n        self.paused = True",
+     "    def pause(self):\n        self.paused = False", f"{TMN} -k pause"),
+    ("меню: время прыгает", MN, "        dt = min(self.MAX_STEP, self._clock.restart() / 1000.0)",
+     "        dt = self._clock.restart() / 1000.0", f"{TMN} -k jump"),
+    ("меню: заголовок не ужимается", MN, "        while px > self.min_px and self.text_width(px) > width:",
+     "        while False:", f"{TMN} -k title"),
+    ("меню: край не проверяется", MN, "        if not frame.contains(r):", "        if False:", f"{TMN} -k catches"),
+    ("меню: наложение не видно", MN, "                if inter.width() > 1 and inter.height() > 1:",
+     "                if False:", f"{TMN} -k catches"),
+    ("меню: обрезка кнопки не видна", MN,
+     "        return w.sizeHint().width() > w.width() or w.sizeHint().height() > w.height() + 1",
+     "        return False", f"{TMN} -k catches"),
+    ("меню: обрезка заголовка не видна", MN, "    if isinstance(w, Title):\n        return w.clipped()",
+     "    if isinstance(w, Title):\n        return False", f"{TMN} -k title_clipping"),
+]
 
 
 if __name__ == "__main__":
