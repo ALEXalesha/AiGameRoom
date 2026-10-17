@@ -196,13 +196,14 @@ QCheckBox {{ font-family: "{self.body_family}"; spacing: 10px; color: {p['text']
 QCheckBox::indicator {{ width: 18px; height: 18px; border-radius: {min(5, fr)}px;
     border: 2px solid {p['border']}; background: {p['field']}; }}
 QCheckBox::indicator:checked {{ background: {p['accent']}; border-color: {p['accent']}; image: none; }}
-QTableWidget, QListWidget {{ font-family: "{self.body_family}"; background: transparent; border: none;
-    gridline-color: {p['grid']}; color: {p['text']};
+QTableWidget, QListWidget {{ font-family: "{self.body_family}"; border: none;
+    background: {rgba(p["surface"], self.card_alpha)}; gridline-color: {p['grid']}; color: {p['text']};
     selection-background-color: {p['surface2']}; selection-color: {p['text']}; }}
 QTableWidget::item {{ padding: 4px 8px; border-bottom: 1px solid {p['grid']}; }}
-QHeaderView::section {{ font-family: "{sec}"; background: transparent; color: {p['muted']}; border: none;
+QHeaderView::section {{ font-family: "{sec}"; background: {p["surface"]}; color: {p['muted']}; border: none;
     border-bottom: 2px solid {p['accent']}; padding: 6px 8px; font-weight: 700; }}
-QTableCornerButton::section {{ background: transparent; border: none; }}
+QHeaderView {{ background: {p["surface"]}; border: none; }}
+QTableCornerButton::section {{ background: {p["surface"]}; border: none; }}
 QScrollBar:vertical {{ background: transparent; width: 10px; margin: 2px; }}
 QScrollBar::handle:vertical {{ background: {p['border']}; border-radius: {min(4, fr)}px; min-height: 30px; }}
 QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical {{ height: 0; }}

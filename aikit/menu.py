@@ -220,7 +220,11 @@ def text_clipped(w):
         r = w.contentsRect()
         if w.wordWrap():
             return w.heightForWidth(w.width()) > w.height()
-        return QFontMetricsF(w.font()).horizontalAdvance(text) > r.width() + 0.5
+        fm = QFontMetricsF(w.font())
+        lines = text.split("\n")              # подпись в несколько строк: мерить самую длинную строку
+        widest = max(fm.horizontalAdvance(line) for line in lines)
+        tall = fm.lineSpacing() * (len(lines) - 1) + fm.height()
+        return widest > r.width() + 0.5 or tall > r.height() + 1
     if isinstance(w, QAbstractButton):
         if not w.text():
             return False

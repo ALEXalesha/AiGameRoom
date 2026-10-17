@@ -285,3 +285,20 @@ def test_settings_rows_are_plates_with_groups(qapp):
     assert "QFrame#settingRow" in Field().qss("dark")
     assert page_problems(page) == []
     page.close()
+
+
+def test_table_header_in_game_colors(qapp):
+    """Шапка таблицы - цвет карточки игры, а не белая заливка Fusion (поймано на Сапёре 17.10)."""
+    from PySide6.QtWidgets import QTableWidget
+    page = stats_page(Field())
+    table = QTableWidget(0, 3)
+    table.setHorizontalHeaderLabels(["Поле", "Партий", "Побед"])
+    page.col.insertWidget(1, table)
+    show(qapp, page, 1180, 780)
+    head = table.horizontalHeader()
+    img = head.grab().toImage()
+    assert img.pixelColor(head.width() - 4, 3) == QColor("#2c3427")
+    show(qapp, page, 1180, 780, "light")
+    img = head.grab().toImage()
+    assert img.pixelColor(head.width() - 4, 3) == QColor("#eceee2")
+    page.close()

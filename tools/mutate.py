@@ -166,6 +166,10 @@ MUTANTS += [
      "        super().setText(text)", f"{TSK} -k heading"),
     ("скин: флажок меряется жирным", MN, "        if w.isCheckable() and not isinstance(w, (QCheckBox, QRadioButton)):",
      "        if w.isCheckable():", f"{TSK} -k checkbox_text"),
+    ("меню: срезанная строка подписи не видна", MN, "        return widest > r.width() + 0.5 or tall > r.height() + 1",
+     "        return widest > r.width() + 0.5", f"{TMN} -k multiline"),
+    ("скин: шапка таблицы белая", SK, 'QHeaderView {{ background: {p["surface"]}; border: none; }}\n', "",
+     f"{TSK} -k header"),
     ("контракт: без стиля игры молча", CC, "    if not skin:", "    if False:", f"{TC} -k skin"),
 ]
 
