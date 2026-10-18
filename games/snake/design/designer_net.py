@@ -1,7 +1,8 @@
 """Сеть-дизайнер: по экрану, размеру окна, теме, языку, видимости и шуму выдаёт раскладку
 экрана (прямоугольник каждого элемента) и стиль окна (шрифт, скругление, акцентные цвета).
 
-    вход 16: ширина/1000, высота/1000, экран (4), тема (2), язык (2), видимость (2), шум (4)
+    вход 17: ширина/1000, высота/1000, экран (4), тема (2), язык (2), видимость (2), шум (4),
+             масштаб окна - 1 (2.1, game/design/knobs.scale_for)
       -> Dense 384 -> ReLU -> Dense 384 -> ReLU -> Dense 69
     выход: 13 мест x (x, y, w, h)/1000 и 17 чисел стиля (game/design/knobs.style_vector)
 
@@ -11,7 +12,7 @@
 """
 import numpy as np
 
-from games.snake.design.knobs import STYLE_DIM, Z_DIM, style_from_vector
+from games.snake.design.knobs import STYLE_DIM, Z_DIM, scale_for, style_from_vector
 from games.snake.design.mlp import MLP
 
 SCREENS = ("menu", "match", "stats", "settings")
@@ -26,7 +27,7 @@ SLOTS = {
 MAX_SLOTS = max(len(v) for v in SLOTS.values())
 THEMES = ("dark", "light")
 LANGS = ("ru", "en")
-IN = 2 + len(SCREENS) + len(THEMES) + len(LANGS) + 2 + Z_DIM
+IN = 2 + len(SCREENS) + len(THEMES) + len(LANGS) + 2 + Z_DIM + 1
 OUT = 4 * MAX_SLOTS + STYLE_DIM
 SCALE = 1000.0
 # Запас места: сеть учится на прямоугольниках кода, раздвинутых на ROOM px с каждой стороны.
@@ -42,7 +43,8 @@ def inputs(screen, w, h, theme, lang, flags, z):
     x[6 + (THEMES.index(theme) if theme in THEMES else 0)] = 1
     x[8 + (LANGS.index(lang) if lang in LANGS else 0)] = 1
     x[10], x[11] = flags
-    x[12:] = np.asarray(z, np.float32).reshape(Z_DIM)
+    x[12:12 + Z_DIM] = np.asarray(z, np.float32).reshape(Z_DIM)
+    x[12 + Z_DIM] = scale_for(w, h) - 1.0
     return x
 
 

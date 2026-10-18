@@ -2,8 +2,8 @@
  "id": "snake",
  "source": "SnakeAIGame",
  "layout": "contract",
- "commit": "18bab15",
+ "commit": "c5f3ba4",
  "uncommitted": false,
- "aikit": "0.1.0",
- "date": "2026-10-17"
+ "aikit": "0.4.0",
+ "date": "2026-10-18"
 }

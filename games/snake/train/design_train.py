@@ -62,8 +62,10 @@ class Teacher:
             self.ctx.set_lang(lang)
             self.lang, self.font = lang, None
         if font_z != self.font:
-            w.setStyleSheet(theme.qss("dark", {"font": knobs(np.array([0, 0, font_z, 0])).font,
-                                               "radius": 10.0, "colors": {}}))
+            # стиль через виджет: при смене размера окна он сам ставит масштаб (game/ui/look.scale_for)
+            w.style_now = {"font": knobs(np.array([0, 0, font_z, 0])).font, "radius": 10.0, "colors": {}}
+            w.theme_name = "dark"
+            w.restyle()
             self.font = font_z
         k = knobs(z)
         for s in w.screens:

@@ -5,11 +5,12 @@
 """
 import numpy as np
 from PySide6.QtCore import QElapsedTimer, Qt, QTimer, Signal
-from PySide6.QtGui import QColor, QPainter
+from PySide6.QtGui import QColor, QPainter, QPixmap
 from PySide6.QtWidgets import (QCheckBox, QComboBox, QFrame, QGridLayout, QHBoxLayout, QLabel,
                                QProgressBar, QPushButton, QScrollArea, QSizePolicy, QSlider,
                                QVBoxLayout, QWidget)
 
+from aikit.menu import Backdrop
 from games.snake.core import match as M
 from games.snake.core.cells import DOWN, LEFT, RIGHT, UP, build
 from games.snake.ui import store as st
@@ -17,6 +18,7 @@ from games.snake.ui import theme
 from games.snake.ui.board import PALETTES, Board
 from games.snake.ui.chart import Chart, points_from
 from games.snake.ui.i18n import LANG_NAMES, translator
+from games.snake.ui.look import Arena, HeadButton, SnakeTitle, paint_terrarium
 
 # Клавиши -> направление. Кириллица - это W A S D на русской раскладке (Ц Ф Ы В).
 KEY_DIRS = {
@@ -134,12 +136,17 @@ class Screen(QWidget):
     менять поля и промежутки по ручкам кода - set_knobs()."""
 
     NAME = ""                 # имя экрана для сети-дизайнера (game/design/designer_net.SCREENS)
+    TERRARIUM = False         # неподвижный фон-террариум (статистика, настройки; game/ui/look.py)
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self.setObjectName("screen")
         self.t = translator("ru")
         self.colors = theme.tokens("dark")
+        self.theme_name = "dark"
+        self._backdrop = None     # (ширина, высота, тема) -> картинка фона
+        self.scale = 1.0          # масштаб окна (game/ui/look.scale_for): поля и размеры элементов
+        self._knobs = None
         self.texts = Texts()
         self._tracked = []        # (раскладка, базовые поля, базовый промежуток)
         self._gaps = []           # (раскладка, распорка, базовый размер)
@@ -157,18 +164,31 @@ class Screen(QWidget):
         self._gaps.append((layout, layout.itemAt(layout.count() - 1).spacerItem(), px))
 
     def set_knobs(self, k):
-        """Поля - на k.margin, промежутки и распорки - на k.spacing (game/design/knobs.py)."""
+        """Поля - на k.margin, промежутки и распорки - на k.spacing (game/design/knobs.py), и всё -
+        на масштаб окна."""
+        self._knobs = k
+        s = self.scale
         for lay, m, sp in self._tracked:
-            lay.setContentsMargins(*(round(v * k.margin) for v in m))
+            lay.setContentsMargins(*(round(v * k.margin * s) for v in m))
             if sp >= 0:
-                lay.setSpacing(round(sp * k.spacing))
+                lay.setSpacing(round(sp * k.spacing * s))
         for lay, item, px in self._gaps:
-            v = round(px * k.spacing)
+            v = round(px * k.spacing * s)
             if isinstance(lay, QHBoxLayout):
                 item.changeSize(v, 0, QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Minimum)
             else:
                 item.changeSize(0, v, QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
             lay.invalidate()
+
+    def set_scale(self, s):
+        """Масштаб окна: размеры элементов (sized) и поля с промежутками (set_knobs)."""
+        self.scale = s
+        self.sized(s)
+        if self._knobs is not None:
+            self.set_knobs(self._knobs)
+
+    def sized(self, s):
+        """Постоянные размеры элементов экрана под масштаб s (у каждого экрана свои)."""
 
     def elements(self):
         """[(имя, виджет, имя родителя или None)] - что раскладывает сеть-дизайнер; родитель
@@ -217,12 +237,45 @@ class Screen(QWidget):
 
     def set_theme(self, name):
         self.colors = theme.tokens(name)
+        self.theme_name = name
+        self._backdrop = None
+        self.update()
+
+    def paintEvent(self, event):
+        if not self.TERRARIUM:
+            super().paintEvent(event)
+            return
+        key = (self.width(), self.height(), self.theme_name)
+        if self._backdrop is None or self._backdrop[0] != key:
+            pm = QPixmap(max(1, self.width()), max(1, self.height()))
+            q = QPainter(pm)
+            paint_terrarium(q, self.width(), self.height(), self.theme_name)
+            q.end()
+            self._backdrop = (key, pm)
+        p = QPainter(self)
+        p.drawPixmap(0, 0, self._backdrop[1])
+        p.end()
 
 
 # --- меню -----------------------------------------------------------------------------
 
 
+class ArenaBackdrop(Backdrop):
+    """Живая арена под элементами меню (свой дочерний виджет: у экрана self.t - переводчик,
+    а у Backdrop - время)."""
+
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.arena = Arena()
+        self.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents, True)
+
+    def paint_scene(self, p, w, h, t):
+        self.arena.paint(p, w, h, t, self.theme_name)
+
+
 class MenuScreen(Screen):
+    """Главный экран: живая арена-террариум на фоне (aikit.menu.Backdrop - тикает, только пока
+    меню на экране), заголовок кожей змейки, «Играть» - голова с глазами (game/ui/look.py)."""
     NAME = "menu"
     play = Signal()
     stats = Signal()
@@ -232,6 +285,8 @@ class MenuScreen(Screen):
     def __init__(self, parent=None):
         super().__init__(parent)
         self._settings = None
+        self.backdrop = ArenaBackdrop(self)
+        self.backdrop.lower()
         outer = QVBoxLayout(self)
         outer.setContentsMargins(32, 32, 32, 24)
         self.track(outer)
@@ -240,7 +295,7 @@ class MenuScreen(Screen):
         self.logo = mini_board()
         outer.addWidget(self.logo, 0, Qt.AlignmentFlag.AlignHCenter)
         self.gap(outer, 12)
-        title = self.texts.add(label("", "title"), "title")
+        title = self.texts.add(SnakeTitle(), "title")
         title.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         outer.addWidget(title)
         self.title_label = title
@@ -253,21 +308,20 @@ class MenuScreen(Screen):
         column = QVBoxLayout()
         column.setSpacing(10)
         self.track(column)
-        self.play_button = self.texts.add(button(primary=True), "play")
+        self.play_button = self.texts.add(HeadButton(), "play")
         self.stats_button = self.texts.add(button(), "stats")
         self.settings_button = self.texts.add(button(), "settings")
         self.quit_button = self.texts.add(button(), "quit")
         for b, sig in ((self.play_button, self.play), (self.stats_button, self.stats),
                        (self.settings_button, self.settings), (self.quit_button, self.quit)):
-            b.setFixedWidth(300)
             b.clicked.connect(sig)
             column.addWidget(b, 0, Qt.AlignmentFlag.AlignHCenter)
         outer.addLayout(column)
         self.gap(outer, 16)
 
         self.message = label("", "warning", wrap=True)
-        self.message.setFixedWidth(560)      # с переносом строк и выравниванием по центру
-                                             # иначе Qt считает высоту на одну строку
+        # ширина у сообщения постоянная (sized): с переносом строк и выравниванием по центру
+        # иначе Qt считает высоту на одну строку
         self.message.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
         self.message.hide()
         outer.addWidget(self.message, 0, Qt.AlignmentFlag.AlignHCenter)
@@ -276,6 +330,34 @@ class MenuScreen(Screen):
         self.info = label("", "muted")
         self.info.setAlignment(Qt.AlignmentFlag.AlignHCenter)
         outer.addWidget(self.info)
+
+    def sized(self, s):
+        for b in (self.play_button, self.stats_button, self.settings_button, self.quit_button):
+            b.setFixedWidth(round(300 * s))
+        self.message.setFixedWidth(round(560 * s))
+        self.logo.setFixedSize(round(14 * 20 * s), round(4 * 20 * s))
+
+    def set_theme(self, name):
+        super().set_theme(name)
+        self.backdrop.set_theme(name)
+        self.title_label.theme_name = name
+        self.title_label.update()
+        self.play_button.eye = QColor("#04130a")
+
+    def resizeEvent(self, event):
+        self.backdrop.setGeometry(self.rect())
+        self.backdrop.lower()
+        super().resizeEvent(event)
+
+    # пауза вкладки оболочки и кадры README - у фона
+    def pause(self):
+        self.backdrop.pause()
+
+    def resume(self):
+        self.backdrop.resume()
+
+    def set_time(self, t):
+        self.backdrop.set_time(t)
 
     def show_message(self, text):
         self.message.setText(text)
@@ -315,7 +397,7 @@ class Overlay(QWidget):
         outer.addStretch(1)
         self.card = QFrame()
         self.card.setObjectName("overlayCard")
-        self.card.setFixedWidth(340)
+        self.card.setFixedWidth(340)            # масштаб окна - MatchScreen.sized
         box = QVBoxLayout(self.card)
         box.setContentsMargins(26, 22, 26, 22)
         box.setSpacing(10)
@@ -346,6 +428,7 @@ class MatchScreen(Screen):
         self.store = store
         self.sounds = sounds
         self.match = None
+        self.rounds_done = 0             # раундов сыграно в этом матче (брошенный - поражение)
         self.level = "medium"
         self._shown = -1
         self._overlay_kind = None        # что на карточке: ("pause",) / ("over", ev) / ("fail", текст)
@@ -468,6 +551,11 @@ class MatchScreen(Screen):
     def design_layouts(self):
         return [self.layout(), self.panel.layout()]
 
+    def sized(self, s):
+        self.panel.setFixedWidth(round(272 * s))
+        self.conf_value.setMinimumWidth(round(56 * s))
+        self.overlay.card.setFixedWidth(round(340 * s))
+
     def retranslate(self, t):
         super().retranslate(t)
         if self.match is not None:
@@ -491,6 +579,7 @@ class MatchScreen(Screen):
         self.overlay.hide()
         self._overlay_kind = None
         self._shown = -1
+        self.rounds_done = 0
         self._process()
         self._refresh()
         self.clock.start()
@@ -500,7 +589,20 @@ class MatchScreen(Screen):
     def stop(self):
         self.timer.stop()
 
+    def abandon(self):
+        """Матч брошен (меню, закрытие окна): после сыгранного раунда - поражение матча, как в
+        КНБ 1.0.4, иначе проигрывающий уходил бы без поражения (проверка 17.10: «1 матч, 4 раунда»
+        при счёте 0:3). До первого раунда не считается."""
+        m = self.match
+        if m is None or m.phase == M.MATCH_OVER or self.rounds_done == 0:
+            return False
+        st.record_match(self.store.stats, self.level, False)
+        self.store.save_stats()
+        self.rounds_done = 0
+        return True
+
     def leave(self):
+        self.abandon()
         self.stop()
         self.match = None
         self.overlay.hide()
@@ -531,7 +633,8 @@ class MatchScreen(Screen):
         t = self.t
         self._overlay_kind = kind
         if kind[0] == "pause":
-            self._show_overlay(t("pause"), t("pause_hint"), (self.resume_button, self.menu_button))
+            hint = t("pause_hint") + ("\n" + t("leave_is_loss") if self.rounds_done else "")
+            self._show_overlay(t("pause"), hint, (self.resume_button, self.menu_button))
         elif kind[0] == "over":
             a, b = self.match.score
             self._show_overlay(t("match_win") if kind[1] == "win" else t("match_loss"),
@@ -577,6 +680,7 @@ class MatchScreen(Screen):
             self.sounds.on_event(ev)
             if ev.startswith("round_"):
                 st.record_round(stats, self.level, m.round_result, m.longest[0], m.round_eaten[0])
+                self.rounds_done += 1
                 self.store.save_stats()
             elif ev in ("win", "lose"):
                 st.record_match(stats, self.level, ev == "win")
@@ -661,6 +765,7 @@ ACCURACY_ROWS = (("field_symmetric", 0.995, True), ("field", 0.995, True), ("eve
 
 class StatsScreen(Screen):
     NAME = "stats"
+    TERRARIUM = True
     back = Signal()
 
     def __init__(self, store, models, parent=None):
@@ -677,6 +782,7 @@ class StatsScreen(Screen):
         scroll = QScrollArea()
         scroll.setWidgetResizable(True)
         scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        scroll.viewport().setAutoFillBackground(False)
         body = QWidget()
         body.setObjectName("scrollBody")
         scroll.setWidget(body)
@@ -859,6 +965,11 @@ class StatsScreen(Screen):
     def elements(self):
         return [("title", self.title_label, None), ("back", self.back_button, None), ("scroll", self.scroll, None)]
 
+    def sized(self, s):
+        for c in self.charts:
+            c.setFixedHeight(round(210 * s))
+            c.setMinimumWidth(round(300 * s))
+
     def accuracy_text(self):
         return self.world_label.text()
 
@@ -877,6 +988,7 @@ class StatsScreen(Screen):
 
 class SettingsScreen(Screen):
     NAME = "settings"
+    TERRARIUM = True
     back = Signal()
     changed = Signal(str)
 
@@ -884,6 +996,7 @@ class SettingsScreen(Screen):
         super().__init__(parent)
         self.store = store
         self.ctx = ctx
+        self._values = []
         outer = QVBoxLayout(self)
         outer.setContentsMargins(28, 22, 28, 22)
         self.track(outer)
@@ -971,6 +1084,7 @@ class SettingsScreen(Screen):
         line.addWidget(widget, 1 if isinstance(widget, QSlider) else 0)
         if value is not None:
             value.setMinimumWidth(110)
+            self._values.append(value)
             line.addWidget(value)
         if not isinstance(widget, QSlider):
             line.addStretch(1)
@@ -993,6 +1107,11 @@ class SettingsScreen(Screen):
 
     def design_layouts(self):
         return [self.layout(), self.card_game.layout(), self.card_view.layout()]
+
+    def sized(self, s):
+        for v in self._values:
+            v.setMinimumWidth(round(110 * s))
+        self.preview.setFixedSize(round(14 * 20 * s), round(4 * 20 * s))
 
     def retranslate(self, t):
         super().retranslate(t)

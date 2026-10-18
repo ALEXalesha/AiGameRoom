@@ -22,6 +22,7 @@ from games.snake.design.runtime import from_models
 from games.snake.ui import store as st
 from games.snake.ui import theme
 from games.snake.ui.i18n import translator
+from games.snake.ui.look import scale_for
 from games.snake.ui.screens import MatchScreen, MenuScreen, SettingsScreen, StatsScreen
 from games.snake.ui.sound import Sounds
 
@@ -72,6 +73,9 @@ class GameWidget(QWidget):
         self.setObjectName("gameRoot")
         self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground, True)
         self.setMinimumSize(MIN_WIDTH, MIN_HEIGHT)
+        self.style_now = None            # стиль окна (сеть-дизайнер или код); None - основной вид
+        self.scale = 1.0                 # масштаб окна: шрифты и размеры растут на больших окнах
+        self.theme_name = ctx.theme
 
         self.stack = QStackedWidget()
         lay = QVBoxLayout(self)
@@ -84,6 +88,7 @@ class GameWidget(QWidget):
         self.screens = (self.menu, self.match_screen, self.stats_screen, self.settings_screen)
         for screen in self.screens:
             self.stack.addWidget(screen)
+            screen.set_scale(self.scale)      # постоянные размеры элементов (масштаб 1)
 
         self.menu.play.connect(self.play)
         self.menu.stats.connect(self.show_stats)
@@ -207,14 +212,36 @@ class GameWidget(QWidget):
 
     def apply_theme(self, name, relayout=True):
         style = self.design.style(name, self.ctx.lang) if self.design is not None else None
-        self.style_now = style               # стиль окна сейчас (None - оформление 1.1)
-        self.setStyleSheet(theme.qss(name, style))
+        self.style_now = style               # стиль окна сейчас (None - основной вид без шума)
+        self.theme_name = name
+        self.restyle()
         self.setPalette(theme.palette(name, style))
         for screen in self.screens:
             screen.set_theme(name)
         current = self.stack.currentWidget()
         if current is not None and relayout:
             current.relayout()
+
+    def restyle(self):
+        """Таблица стилей по теме, стилю и масштабу окна."""
+        self.setStyleSheet(theme.qss(self.theme_name, self.style_now, self.scale))
+
+    def set_scale(self, k):
+        """Масштаб окна (game/ui/look.scale_for): на 4K без масштаба Windows меню и панель матча
+        были крошечными (проверка 17.10). Сеть-дизайнер видит те же размеры, что и код-учитель."""
+        if k == self.scale:
+            return
+        self.scale = k
+        self.restyle()
+        for screen in self.screens:
+            screen.set_scale(k)
+        current = self.stack.currentWidget()
+        if current is not None:
+            current.relayout()
+
+    def resizeEvent(self, event):
+        self.set_scale(scale_for(self.width(), self.height()))
+        super().resizeEvent(event)
 
     def retranslate(self):
         for screen in self.screens:
@@ -223,19 +250,24 @@ class GameWidget(QWidget):
     # --- жизнь во вкладке оболочки и в окне -----------------------------------------------
 
     def pause(self):
+        self.menu.pause()                    # живой фон меню не тикает в скрытой вкладке
         self.match_screen.auto_pause()
         self._was_running = self.match_screen.timer.isActive()
         self.match_screen.stop()
 
     def resume(self):
+        self.menu.resume()
         if self._was_running and not self.closed and self.match_screen.match is not None:
             self.match_screen.clock.restart()
             self.match_screen.timer.start()
         self._was_running = False
 
     def shutdown(self):
-        """Остановить таймер матча; потоков нет. True - всё остановлено."""
+        """Остановить таймер матча; потоков нет. True - всё остановлено. Матч, брошенный после
+        сыгранного раунда, - поражение (как в КНБ 1.0.4)."""
         self.closed = True
+        self.menu.pause()
+        self.match_screen.abandon()
         self.match_screen.stop()
         self.store.save_stats()
         self.journal.save()
