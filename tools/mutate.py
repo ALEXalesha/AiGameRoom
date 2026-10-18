@@ -168,6 +168,8 @@ MUTANTS += [
      "        if w.isCheckable():", f"{TSK} -k checkbox_text"),
     ("меню: срезанная строка подписи не видна", MN, "        return widest > r.width() + 0.5 or tall > r.height() + 1",
      "        return widest > r.width() + 0.5", f"{TMN} -k multiline"),
+    ("меню: срезанные хвосты букв не видны", MN, "    return max(0.0, fm.tightBoundingRect(text).bottom() - fm.descent())",
+     "    return 0.0", f"{TMN} -k descenders"),
     ("скин: шапка таблицы белая", SK, 'QHeaderView {{ background: {p["surface"]}; border: none; }}\n', "",
      f"{TSK} -k header"),
     ("контракт: без стиля игры молча", CC, "    if not skin:", "    if False:", f"{TC} -k skin"),
