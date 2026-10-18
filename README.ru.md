@@ -12,6 +12,11 @@
 
 </div>
 
+[![Built with Claude Code](https://img.shields.io/badge/Built_with-Claude_Code-D97757?logo=claude&logoColor=white)](https://claude.com/claude-code)
+Код, тесты и документация этого проекта написаны Claude (Anthropic) в Claude Code. Идеи, проверка и решения - Алексей.
+
+**Состояние:** версия 0.1.0, ещё не выпущена. Выпуск 1.0 - когда внутри будут все игры; пока запуск из исходников (см. «Запуск»).
+
 Каждая игра делается в своём репозитории по одному контракту
 ([docs/contract.md](docs/contract.md)): пакет `game/` с `GAME_INFO` и `create_widget(ctx)`.
 ИИ-Игротека - оболочка, которая собирает эти игры в одну программу.

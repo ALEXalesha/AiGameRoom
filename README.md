@@ -12,6 +12,11 @@
 
 </div>
 
+[![Built with Claude Code](https://img.shields.io/badge/Built_with-Claude_Code-D97757?logo=claude&logoColor=white)](https://claude.com/claude-code)
+Code, tests and docs are written by Claude (Anthropic) in Claude Code. Ideas, testing and decisions - Alexey.
+
+**Status:** version 0.1.0, not released yet. The 1.0 release comes once all the games are inside; until then run it from source (see Run).
+
 Each game is developed in its own repository and follows one contract
 ([docs/contract.md](docs/contract.md)): a `game/` package with `GAME_INFO` and
 `create_widget(ctx)`. AI Game Room is the shell that collects these games in one program.
