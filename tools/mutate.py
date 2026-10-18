@@ -170,6 +170,7 @@ MUTANTS += [
      "        return widest > r.width() + 0.5", f"{TMN} -k multiline"),
     ("меню: срезанные хвосты букв не видны", MN, "    return max(0.0, fm.tightBoundingRect(text).bottom() - fm.descent())",
      "    return 0.0", f"{TMN} -k descenders"),
+    ("меню: вес заголовка числом", MN, "            w = QFont.Weight(int(w))\n", "            pass\n", f"{TMN} -k weight_as_number"),
     ("скин: шапка таблицы белая", SK, 'QHeaderView {{ background: {p["surface"]}; border: none; }}\n', "",
      f"{TSK} -k header"),
     ("контракт: без стиля игры молча", CC, "    if not skin:", "    if False:", f"{TC} -k skin"),

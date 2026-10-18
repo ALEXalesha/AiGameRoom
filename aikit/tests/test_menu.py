@@ -213,3 +213,10 @@ def test_cut_descenders_are_caught(qapp):
     assert descender_deficit(QFontMetricsF(g), ok.text()) < 1 and not text_clipped(ok)
     lb.setFixedHeight(round(fm.height() + descender_deficit(fm, lb.text())) + 2)
     assert not text_clipped(lb)
+
+
+def test_title_weight_as_number_is_converted(qapp):
+    """Вес заголовка числом (900) - в QFont.Weight: с числом Qt падал при смене стилей страниц."""
+    from PySide6.QtGui import QFont
+    t = Title("Segoe UI", 30, weight=900)
+    assert t.make_font(30).weight() == QFont.Weight.Black

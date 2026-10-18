@@ -124,7 +124,12 @@ class Title(QWidget):
     def make_font(self, px):
         f = QFont(self.family)
         f.setPixelSize(max(1, round(px)))
-        f.setWeight(self.weight)
+        w = self.weight
+        if not isinstance(w, QFont.Weight):
+            # число (900) вместо QFont.Weight: PySide 6.11 молча принимает, а при перерисовке стилей
+            # соседней страницы Qt падал (access violation, BlockDrop 18.10)
+            w = QFont.Weight(int(w))
+        f.setWeight(w)
         if self.spacing:
             f.setLetterSpacing(QFont.SpacingType.AbsoluteSpacing, px * self.spacing)
         return f
