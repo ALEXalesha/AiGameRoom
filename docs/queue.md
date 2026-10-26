@@ -13,10 +13,10 @@
 |---|---|---|
 | 1 | **AiForPrinter**, Calibrate3dPrinter (окно), ChessCheckersAi | Принтер Алексей назвал первым. Калибровка и шахматы ждут давно. |
 | 2 | DurakAiGame, 2048AiGame, TetrisAiGame | Первые игры по `contract.md`. На них складывается `aikit`. |
-| 3 | PythonAiGames: оболочка и перенос готовых игр, SeaWarAi, SaperAi | Оболочка проверяется на 4–5 живых играх. Сапёр и морской бой небольшие. |
+| 3 | PythonAiGames: оболочка и перенос готовых игр, SeaWarAi, SaperAi | Оболочка проверяется на 4-5 живых играх. Сапёр и морской бой небольшие. |
 | 4 | RockPaperAi, LabirinthAi, PinPongAi | Средние по объёму. |
 | 5 | CubeRubikAi, TanksAi, Flappy Bird (HTML) | Flappy Bird маленький, идёт третьим. |
-| 6 | MiniRts, AiRacer | Самые сложные. AiRacer — только когда Horizon Drift стабилен и его агент закончил. |
+| 6 | MiniRts, AiRacer | Самые сложные. AiRacer - только когда Horizon Drift стабилен и его агент закончил. |
 | 7 | PythonAiGames: перенос старых игр (TicTacToe, Snake, AiCar, AiBoy), выпуск AiGameRoom | Старые репозитории остаются (решение Алексея 03.10.2026), у каждой игры свой репозиторий плюс общая Игротека. |
 
 Порядок внутри волн можно менять. Если Алексей скажет «вот это раньше», так и будет.
