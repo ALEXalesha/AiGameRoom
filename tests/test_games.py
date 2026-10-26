@@ -97,9 +97,28 @@ def test_game_writes_only_into_its_data_dir(game_id, shell, qapp):
     assert os.listdir(os.path.join(shell.root, game_id))
 
 
-def test_durak_closes_while_ai_plays(shell, qapp):
+def test_durak_closes_while_ai_plays(shell, qapp, monkeypatch):
     """Партия ИИ против ИИ идёт в потоках поиска; закрытие вкладки посреди неё."""
     from PySide6.QtCore import QThread
+    from games.durak.ui import ai_thread
+    # Настоящий поиск в начале партии отвечает за 3-15 мс раз в полсекунды (ждёт карты),
+    # и опрос раз в 5 мс ловил живой поток не всегда: на CI за 5 с - ни разу. Поток
+    # держится до флага остановки (или 10 с), потом ищет настоящий агент - окно «посреди
+    # поиска» есть всегда, а закрытие обязано остановить поток флагом, а не ждать его.
+    real_agent = ai_thread.AiController.agent
+
+    class Slow:
+        def __init__(self, agent):
+            self.agent = agent
+
+        def choose(self, obs, seed=None, stop=None):
+            if stop is None:
+                return self.agent.choose(obs, seed=seed)
+            stop.wait(10.0)
+            return self.agent.choose(obs, seed=seed, stop=stop)
+
+    monkeypatch.setattr(ai_thread.AiController, "agent",
+                        staticmethod(lambda level: Slow(real_agent(level))))
     tab = shell.open_game("durak")
     game = tab.game
     game.change("mode", "demo")

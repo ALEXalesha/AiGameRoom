@@ -25,13 +25,18 @@ def tracked_files():
     return [f for f in out.splitlines() if not f.endswith((".npz", ".png", ".ico"))]
 
 
+PUBLIC_HOSTS = {"github.com", "www.github.com"}
+
+
 def test_no_private_strings_in_tracked_files():
     secrets = []
     email = git("config", "user.email")
     if email:
         secrets.append(re.escape(email))
     m = re.match(r"^[a-z]+://([^/]+)/", git("remote", "get-url", "origin"))
-    if m:
+    # Личное - адрес домашнего сервера в origin. На CI GitHub origin - сам github.com, и шаблоном
+    # становилось публичное имя хостинга: падали скрипт выкладки и noreply-адреса.
+    if m and m.group(1).lower() not in PUBLIC_HOSTS:
         secrets.append(re.escape(m.group(1)))
     secrets.append(re.escape("Drive" + "\\" + "Alexey"))
     secrets.append(re.escape("Drive" + "/" + "Alexey"))
